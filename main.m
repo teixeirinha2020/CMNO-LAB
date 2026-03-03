@@ -73,7 +73,7 @@ disp(P)
 x0 = [0.1 0 0 0 0]';
 D = [0 0 0 0 0]';
 t = 2;
-I = eye(5);
+I_5 = eye(5);
 
 out = sim("Q6_Model.slx", t);
 
@@ -129,20 +129,21 @@ disp(L)
 %% Q8 - Simulink
 
 t = 4;
+
+% Matrices for the pendulum state-spaxe
 x0 = [0.1 0 0 0 0]';
-A_Q8 = A - B*K - L*C;
-B_Q8 = L;
-C_Q8 = -K;
 D = [0 0]';
 
 out = sim("Q8_Model.slx", t);
 
-gg = plot(out.y.Time, out.y.Data);
-legend({'$\alpha$ (rad)', ...
-        '$\dot{\alpha}$ (rad/s)', ...
-        '$\beta$ (rad)', ...
-        '$\dot{\beta}$ (rad/s)', ...
-        '$i$ (A)'}, ...
-        'Interpreter','latex', ...
-        'Location','best')
-grid on
+% Plot measured outputs y (2 signals)
+figure;
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2));
+grid on;
+legend({'y_1','y_2'}, 'Location','best');
+
+% Plot control input u (1 signal)
+figure;
+plot(out.u.Time, out.u.Data);
+grid on;
+legend({'u'}, 'Location','best');
