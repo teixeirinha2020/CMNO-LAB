@@ -130,7 +130,7 @@ disp(L)
 
 t = 4;
 
-% Matrices for the pendulum state-spaxe
+% Matrices for the pendulum state-space
 x0 = [0.1 0 0 0 0]';
 D = [0 0]';
 
