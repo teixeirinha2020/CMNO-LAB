@@ -1,0 +1,15 @@
+% MATLAB/Simulink generated files
+*.asv
+*.autosave
+*.slxc
+slprj/
+*.mat
+*.mex*
+
+% IDE
+.vscode/
+.idea/
+
+% OS
+.DS_Store
+Thumbs.db

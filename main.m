@@ -51,8 +51,11 @@ grid on
 %equation, and the closed-loop poles P for sys
 
 [K, S, P] = lqr(sys, Qr, Rr);  
+disp('Matrix K')
 disp(K)
+disp('Matrix S')
 disp(S)
+disp('Closed-loop Poles')
 disp(P)
 
 % K is the solution to the optimization problem of the LQR for the infinite-horizon
@@ -70,7 +73,7 @@ disp(P)
 x0 = [0.1 0 0 0 0]';
 D = [0 0 0 0 0]';
 t = 2;
-I = eye(5, 5);
+I = eye(5);
 
 out = sim("Q6_Model.slx", t);
 
@@ -118,8 +121,28 @@ Qe = eye(size(A))*10;
 Re = eye(2);
 
 L = lqe(A, G, C, Qe, Re);
+disp('Matrix L:')
 disp(L)
 
 % G is the process noise coupling matrix
 
 %% Q8 - Simulink
+
+t = 4;
+x0 = [0.1 0 0 0 0]';
+A_Q8 = A - B*K - L*C;
+B_Q8 = L;
+C_Q8 = -K;
+D = [0 0]';
+
+out = sim("Q8_Model.slx", t);
+
+gg = plot(out.y.Time, out.y.Data);
+legend({'$\alpha$ (rad)', ...
+        '$\dot{\alpha}$ (rad/s)', ...
+        '$\beta$ (rad)', ...
+        '$\dot{\beta}$ (rad/s)', ...
+        '$i$ (A)'}, ...
+        'Interpreter','latex', ...
+        'Location','best')
+grid on
