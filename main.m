@@ -75,7 +75,7 @@ D = [0 0 0 0 0]';
 t = 2;
 I_5 = eye(5);
 
-out = sim("Q6_Model.slx", t);
+out = sim("Q6_Model_2015a.slx", t);
 
 gg = plot(out.x.Time, out.x.Data);
 legend({'$\alpha$ (rad)', ...
@@ -134,7 +134,7 @@ t = 4;
 x0 = [0.1 0 0 0 0]';
 D = [0 0]';
 
-out = sim("Q8_Model.slx", t);
+out = sim("Q8_Model_2015a.slx", t);
 
 % Plot measured outputs y (2 signals)
 figure;
