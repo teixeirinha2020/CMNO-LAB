@@ -16,19 +16,17 @@ Ts = 0.001; % Sampling time
 
 % Augmented matrices to include integrator
 A_aug = [A zeros(5,1);
-        1 zeros(1,5)];
+        C(1,:) 0];
 
 B_aug = [B; 0];
 
 C_aug = [C zeros(2,1)];
 
-D_aug = zeros(1,2);
-
 % Regulator parameters
 Qr = diag([10,0,1,0,0,1]); %Weight Matrix for x
 Rr = 0.1; %Weight for the input variable
 K = lqr(A_aug, B_aug, Qr, Rr); %Calculate feedback gain
-
+disp(K)
 
 % Estimator parameters
 G = eye(size(A)); %
@@ -39,7 +37,7 @@ Re = eye(2);
 L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
 
 L_aug = [L;
-        zeros(1,2)];
+        1 0];
 
 % Simulation & Plots
 deg2rad = pi/180;
