@@ -1,0 +1,124 @@
+\documentclass[journal]{IEEEtran}
+
+% -------------------------------------------------
+% Title
+% -------------------------------------------------
+
+\title{2ª Entrega:\\
+B737-4 -- Aterragem em LCY com Ângulo de Rumo em Volta Coordenada}
+\author{
+Lucas Moreira Nº 109657\\
+Tomás Teixeira Nº 109766\\
+Candela Padín Nº 117093}
+\date{\today}
+
+% -------------------------------------------------
+% Language & Encoding
+% -------------------------------------------------
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% -------------------------------------------------
+% Font
+% -------------------------------------------------
+
+
+
+% -------------------------------------------------
+% Page Layout
+% -------------------------------------------------
+
+
+\usepackage{setspace}
+\onehalfspacing
+
+% -------------------------------------------------
+% Graphics & Tables
+% -------------------------------------------------
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage{lmodern}
+
+% -------------------------------------------------
+% Math
+% -------------------------------------------------
+
+\usepackage{amsmath,amssymb}
+\usepackage{gensymb}
+
+% -------------------------------------------------
+% Formatting
+% -------------------------------------------------
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\captionsetup[figure]{name=Figura}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\setlength{\parskip}{0pt}
+\usepackage{setspace}
+\usepackage{comment}
+\setstretch{1}
+\raggedbottom
+
+
+% -------------------------------------------------
+% Header & Footer
+% -------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{LEAer}
+\rhead{Controlo de Voo}
+\cfoot{Página \thepage\ de \pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% -------------------------------------------------
+% Hyperlinks
+% -------------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% -------------------------------------------------
+% Bibliography
+% -------------------------------------------------
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{Body/Bibliografia.bib}
+
+% -------------------------------------------------
+% Document
+% -------------------------------------------------
+
+\begin{document}
+
+\include{Cover/cover.tex}
+\onecolumn
+\tableofcontents
+\newpage
+\twocolumn
+\setstretch{1}
+\input{Body/00 - RP1.tex}
+\input{Body/01 - RP2.tex}
+\singlespacing
+\printbibliography
+\newpage
+\input{Body/02 - Anexos.tex}
+\end{document}

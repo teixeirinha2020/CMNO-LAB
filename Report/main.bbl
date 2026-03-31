@@ -1,0 +1,79 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{sebenta_prof}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c0683952ec2560a49ef3d162d29a576b}{%
+           family={Azinheira},
+           familyi={A\bibinitperiod},
+           given={J.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{fullhash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{fullhashraw}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{bibnamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorbibnamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authornamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorfullhash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorfullhashraw}{c0683952ec2560a49ef3d162d29a576b}
+      \field{extraname}{1}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://fenix.tecnico.ulisboa.pt/downloadFile/845043405701789/cv-f26.pdf}}
+      \field{month}{02}
+      \field{note}{Visitado: 04/03/2026}
+      \field{title}{Controlo de Voo. Tech. rep., DEM, Instituto Superior Técnico, Universidade de Lisboa}
+      \field{year}{2024}
+    \endentry
+    \entry{enunciado}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c0683952ec2560a49ef3d162d29a576b}{%
+           family={Azinheira},
+           familyi={A\bibinitperiod},
+           given={J.\bibnamedelimi R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{fullhash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{fullhashraw}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{bibnamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorbibnamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authornamehash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorfullhash}{c0683952ec2560a49ef3d162d29a576b}
+      \strng{authorfullhashraw}{c0683952ec2560a49ef3d162d29a576b}
+      \field{extraname}{2}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335756874/cvproj26.pdf}}
+      \field{month}{02}
+      \field{note}{Visitado: 04/03/2026}
+      \field{title}{Enunciado dos projectos. Tech. rep., DEM, Instituto Superior Técnico, Universidade de Lisboa}
+      \field{year}{2026}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
