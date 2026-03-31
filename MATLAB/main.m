@@ -127,7 +127,6 @@ disp(L)
 % G is the process noise coupling matrix
 
 %% Q8 - Simulink
-
 t = 4;
 
 % Matrices for the pendulum state-space
