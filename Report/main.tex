@@ -4,12 +4,12 @@
 % Title
 % -------------------------------------------------
 
-\title{2ª Entrega:\\
-B737-4 -- Aterragem em LCY com Ângulo de Rumo em Volta Coordenada}
+\title{Final Report:\\
+Linear State Feedback Control of an Inverted Pendulum}
 \author{
 Lucas Moreira Nº 109657\\
 Tomás Teixeira Nº 109766\\
-Candela Padín Nº 117093}
+Pedro Machado Nº 110718}
 \date{\today}
 
 % -------------------------------------------------
@@ -32,7 +32,7 @@ Candela Padín Nº 117093}
 
 
 \usepackage{setspace}
-\onehalfspacing
+\onehalfspacing%
 
 % -------------------------------------------------
 % Graphics & Tables
@@ -70,7 +70,7 @@ Candela Padín Nº 117093}
 \usepackage{setspace}
 \usepackage{comment}
 \setstretch{1}
-\raggedbottom
+\raggedbottom%
 
 
 % -------------------------------------------------
@@ -81,7 +81,7 @@ Candela Padín Nº 117093}
 \fancyhf{}
 \lhead{LEAer}
 \rhead{Controlo de Voo}
-\cfoot{Página \thepage\ de \pageref{LastPage}}
+\cfoot{Página~\thepage~de \pageref{LastPage}}
 \renewcommand{\footrulewidth}{0.4pt}
 
 % -------------------------------------------------
@@ -113,12 +113,13 @@ Candela Padín Nº 117093}
 \onecolumn
 \tableofcontents
 \newpage
-\twocolumn
+%\twocolumn
 \setstretch{1}
-\input{Body/00 - RP1.tex}
-\input{Body/01 - RP2.tex}
+\input{Body/00 - Introduction.tex}
+\input{Body/01 - theoretical.tex}
+\input{Body/02 - laboratory.tex}
 \singlespacing
 \printbibliography
 \newpage
-\input{Body/02 - Anexos.tex}
+\input{Body/03 - Anexos.tex}
 \end{document}

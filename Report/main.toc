@@ -1,7 +1,5 @@
 \babel@toc {portuguese}{}\relax 
 \contentsline {section}{\numberline {I}Introdução}{2}{section.1}%
-\contentsline {section}{\numberline {II}Determinação e Análise do Modelo Estudado}{2}{section.2}%
-\contentsline {subsection}{\numberline {\mbox {II-A}}Formulação do Modelo em Espaço de Estados}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {\mbox {II-B}}Análise do Modelo em \textit {Open Loop}}{2}{subsection.2.2}%
-\contentsline {section}{\numberline {III}Sistema de Aumento de Estabilidade}{2}{section.3}%
-\contentsline {section}{\numberline {IV}Anexos}{4}{section.4}%
+\contentsline {section}{\numberline {II}Theoretical Analysis}{3}{section.2}%
+\contentsline {section}{\numberline {III}Laboratory Work}{4}{section.3}%
+\contentsline {section}{\numberline {IV}Anexos}{5}{section.4}%
