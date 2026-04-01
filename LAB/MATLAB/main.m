@@ -1,3 +1,12 @@
+% ------------------------------
+% CMNO 2025/2026 - Group 35
+% 
+% Authors:
+% Lucas Moreira, 109657
+% Tomas Teixeira, 109766
+% Pedro Machado, 110718
+% ------------------------------
+
 % Preamble 
 clear; clc; close all;
 
@@ -38,7 +47,7 @@ disp(r_o);
 
 w = logspace(-1, 3, 1000);
 sys = ss(A, B, C, D);
-G = ss2tf(A, B, C, D); % Why am I computing this?
+G = ss2tf(A, B, C, D);
  
 % Matrix C has 2 rows, so we have 2 measurements
 bode(sys(1, 1), sys(2, 1), w) % Both measurements on the same plot
@@ -71,13 +80,15 @@ disp(P)
 %% Q6 - Simulink 
 
 x0 = [0.1 0 0 0 0]';
-D = [0 0 0 0 0]';
-t = 2;
-I_5 = eye(5);
+D = zeros(5,1);
 
-out = sim("Q6_Q8/Q6_Model_2015a.slx", t);
+T = 2;
+out = sim("Q6_SIM", T);
 
-gg = plot(out.x.Time, out.x.Data);
+figure
+plot(out.x.Time, out.x.Data);
+title('State feedback test')
+xlabel('Time (s)')
 legend({'$\alpha$ (rad)', ...
         '$\dot{\alpha}$ (rad/s)', ...
         '$\beta$ (rad)', ...
@@ -93,9 +104,9 @@ grid on
 % problem for linear dynamic systems. When both the process and 
 % measurement associated with the estimated state are corrupted by random, 
 % independent, zero mean Gaussian white noise, the solution provided by the
-%  Kalman filter is statistically optimal with respect to any quadratic 
+% Kalman filter is statistically optimal with respect to any quadratic 
 % function of the estimation error. For this reason, it is also referred to
-%  as Linear Quadratic Estimator (LQE), and represents the dual of the LQR 
+% as Linear Quadratic Estimator (LQE), and represents the dual of the LQR 
 % to the estimation problem.
 
 % In continuous time, the random process and observation are given by:
@@ -106,7 +117,7 @@ grid on
 % represented by the covariance matrices Q and R for the process and
 % measurement noise, respectively. The Q and R matrices are positive 
 % semi-definite. 
-% he Kalman filter is capable of providing an optimal state estimation 
+% The Kalman filter is capable of providing an optimal state estimation 
 % according to the differential equation:
 % xˆ' = A xˆ + B u + L (y − C xˆ) , where L is the Kalman Gain given by:
 % L = P(C^T)(R^-1); where P is the solution to the Riccati Differential
@@ -124,33 +135,187 @@ L = lqe(A, G, C, Qe, Re);
 disp('Matrix L:')
 disp(L)
 
-% G is the process noise coupling matrix
+% G is the process noise coupling matrix...
 
 %% Q8 - Simulink
-t = 4;
-
 % Matrices for the pendulum state-space
 x0 = [0.1 0 0 0 0]';
-D = [0 0]';
+D = zeros(2,1);
 
-out = sim("Q6_Q8/Q8_Model_2015a.slx", t);
+T = 4;
+out = sim("Q8_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
-figure;
-plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2));
-grid on;
-legend({'y_1','y_2'}, 'Location','best');
+figure
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Controlled system output')
+xlabel('Time (s)')
+ylabel('Angle (rad)')
+legend({'\alpha (rad)','\beta (rad)'}, 'Location','best')
+grid on
 
 % Plot control input u (1 signal)
 figure;
-plot(out.u.Time, out.u.Data);
-grid on;
-legend({'u'}, 'Location','best');
+plot(out.u.Time, out.u.Data)
+title('Controlled system input')
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend({'u'}, 'Location','best')
+grid on
 
-A = [A zeros(5,1);
-    1 0 0 0 0];
 
-B = [B;
-    0];
+%% Q11
+% Q11.1 - Alpha Integrator
+% Initial conditions
+alpha_init = deg2rad(2);
+x0 = [alpha_init 0 0 0 0]';
+D = zeros(2,1);
 
-C = [C 0];
+% Augmented matrices to include integrator
+A_aug = [A zeros(5,1);
+        C(1,:) 0];
+
+B_aug = [B; 0];
+
+C_aug = [C zeros(2,1)];
+
+% Regulator parameters
+Qr = diag([100,0,10,0,0,15]); %Weight Matrix for x
+Rr = 0.01; %Weight for the input variable
+K_aug = lqr(A_aug, B_aug, Qr, Rr); %Calculate feedback gain
+
+% Estimator parameters
+G = eye(size(A)); %
+Qe = eye(size(A))*10; %Variance of process errors
+Re = eye(2)*(deg2rad(0.01)^2); %Variance of measurement errors
+L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
+
+L_aug = [L;
+        1 0];
+
+T = 10;
+out = sim("Q11_1_SIM.slx", T);
+
+% Plot measured outputs y (2 signals)
+figure
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Controlled system output (w/ \alpha integrator)')
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend({'\alpha','\beta'}, 'Location','best')
+grid on
+
+% Plot control input u (1 signal)
+figure
+plot(out.u.Time, out.u.Data)
+title('Controlled system input (w/ \alpha integrator)')
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend({'u'}, 'Location','best')
+grid on
+
+% Q11.2 - Dead Zone Compensator
+dead_zone_half_width = 0.2; % Dead zone half-width
+
+T = 10;
+out = sim("Q11_2_SIM.slx", T);
+
+% Plot measured outputs y (2 signals)
+figure
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Controlled system output (w/ \alpha integrator + dead zone compensator)')
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend({'\alpha','\beta'}, 'Location','best')
+grid on
+
+% Plot control input u (1 signal)
+figure
+plot(out.u.Time, out.u.Data)
+title('Controlled system input (w/ \alpha integrator + dead zone compensator)')
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend({'u'}, 'Location','best')
+grid on
+
+
+%% Final Simulation
+% Initial conditions
+alpha_init = deg2rad(5);
+beta_init = deg2rad(1);
+
+x0 = [alpha_init 0 beta_init 0 0]';
+D = zeros(2,1);
+
+% Motor characteristics
+tau = 0.01; % Motor lag
+dead_zone_half_width = 0.2; % Dead zone half-width
+
+% Sensors characteristics
+quant = 2 * pi / 4096; % quantizer interval in output
+noise_power = quant^2 / 12; % White noise power
+noise_sample_time = 0.01; % s
+
+% Augmented matrices to include integrator
+A_aug = [A zeros(5,1);
+        C(1,:) 0];
+
+B_aug = [B; 0];
+
+C_aug = [C zeros(2,1)];
+
+% Regulator parameters
+Qr = diag([100,0,10,0,0,15]); %Weight Matrix for x
+Rr = 0.01; %Weight for the input variable
+K_aug = lqr(A_aug, B_aug, Qr, Rr); %Calculate feedback gain
+
+% Estimator parameters
+G = eye(size(A)); %
+Qe = eye(size(A))*10; %Variance of process errors
+Re = eye(2)*(deg2rad(0.01)^2); %Variance of measurement errors
+L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
+
+L_aug = [L;
+        1 0];
+
+T = 10;
+out = sim("Final_SIM.slx", T);
+
+% Plot measured outputs y (2 signals)
+figure
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Final controlled system output (w/ motor model)')
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend({'\alpha','\beta'}, 'Location','best')
+grid on
+
+% Plot control input u (1 signal)
+figure
+plot(out.u.Time, out.u.Data)
+title('Controlled system input (w/ motor model)')
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend({'u'}, 'Location','best')
+grid on
+
+T = 10;
+out = sim("Final_sensors_SIM.slx", T);
+
+% Plot measured outputs y (2 signals)
+figure
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Controlled system output (w/ motor model + sensors model)')
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend({'\alpha','\beta'}, 'Location','best')
+grid on
+
+% Plot control input u (1 signal)
+figure
+plot(out.u.Time, out.u.Data)
+title('Controlled system input (w/ motor model + sensors model)')
+xlabel('Time (s)')
+ylabel('Voltage (V)')
+legend({'u'}, 'Location','best')
+grid on
