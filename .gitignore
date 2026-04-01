@@ -3,7 +3,6 @@
 *.autosave
 *.slxc
 slprj/
-*.mat
 *.mex*
 
 % IDE
