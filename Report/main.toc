@@ -1,5 +1,16 @@
 \babel@toc {portuguese}{}\relax 
 \contentsline {section}{\numberline {I}Introdução}{2}{section.1}%
-\contentsline {section}{\numberline {II}Theoretical Analysis}{3}{section.2}%
-\contentsline {section}{\numberline {III}Laboratory Work}{4}{section.3}%
-\contentsline {section}{\numberline {IV}Anexos}{5}{section.4}%
+\contentsline {subsection}{\numberline {\mbox {I-A}}Context and Objectives}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {\mbox {I-B}}System Description}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {II}Theoretical Analysis and Control Design}{3}{section.2}%
+\contentsline {subsection}{\numberline {\mbox {II-A}}System Modeling and Open-Loop Properties}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {\mbox {II-B}}LQR Controller Design}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {\mbox {II-C}}State Estimator Design - LQE}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {\mbox {II-D}}Baseline LQG Simulation}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {III}Laboratory Work and Experimental Results}{4}{section.3}%
+\contentsline {subsection}{\numberline {\mbox {III-A}}Realistic System Simulation}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Initial Controller Testing on Physical Hardware}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {\mbox {III-C}}Compensation of Non-Linearities: Motor Deadzone and Steady-State Error}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {\mbox {III-D}}Final Controller Tuning and Disturbance Rejection}{4}{subsection.3.4}%
+\contentsline {section}{\numberline {IV}Conclusion}{5}{section.4}%
+\contentsline {section}{\numberline {V}Anexos}{6}{section.5}%

@@ -1,6 +1,41 @@
 \section{Introdução}
-\par Este relatório, desenvolvido no âmbito da Unidade Curricular de Controlo de Voo aborda a modelação e a síntese de controlo 
-para a aeronave Boeing 737, considerando a condição de voo 4, com o objetivo de regular o ângulo de rumo em volta coordenada e 
-validar o desempenho numa aterragem no aeroporto London City (LCY). A operação em LCY impõe restrições mais exigentes do que o 
-habitual, nomeadamente por requerer aeronaves certificadas para uma ladeira de $5.5\degree$, sendo a simulação iniciada a cerca
-de 5 NM da pista, a 2000 ft acima da mesma.
+
+\subsection{Context and Objectives}
+
+\par This report details the work developed within the scope of the Multivariable, Non-linear, and Optimal Control course 
+laboratory project. The primary objective is to design, simulate, and implement a robust control strategy to stabilize a highly 
+non-linear and inherently unstable system using a pre-existing experimental setup of a rotary inverted pendulum.
+
+\par The adopted methodology relies on linearizing the plant's mathematical model around its unstable equilibrium point 
+(the upward vertical position) to derive a Linear Time-Invariant (LTI) state-space representation. Based on this model, a 
+Linear Quadratic Gaussian (LQG) control architecture is developed. This comprises a Linear Quadratic Regulator (LQR) to compute 
+the optimal state feedback law, and a Linear Quadratic Estimator (LQE, or Kalman Filter) to estimate the system's full internal 
+state from noisy measurements. The project covers the theoretical analysis of the system, validation through MATLAB/Simulink 
+simulations, and practical real-time implementation on the laboratory's physical hardware, specifically addressing real-world 
+non-linearities such as motor deadzones and steady-state errors.
+
+\subsection{System Description}
+
+\par The physical plant utilized in this work is a rotary inverted pendulum apparatus (a Quanser experimental setup). 
+The mechanical structure consists of a motorized rotary arm that actively maneuvers an unactuated, free-swinging pendulum rod 
+attached to its extremity.
+
+\vspace{1pt}
+
+\par The system operates as a Single-Input Multiple-Output (SIMO) process. The single control input $u$ is the continuous 
+voltage applied to the DC motor that drives the horizontal rotary arm. To monitor the system's behavior, two physical sensors 
+provide the measured output vector $y$:
+
+\vspace{1pt}
+
+\begin{itemize}
+    \item A potentiometer measuring the angular position of the rotary arm $\alpha$.
+    \item An optical encoder measuring the precise angular position of the pendulum relative to the arm $\beta$.
+\end{itemize}
+
+\vspace{2pt}
+
+\par Because the system's complete state vector includes both the angular positions $\alpha, \beta$ and their respective angular 
+velocities $\dot{\alpha}, \dot{\beta}$, but only the positions are directly measured, the system requires a state observer. 
+Furthermore, the provided physical setup interfaces with the Simulink control environment via A/D and D/A data acquisition boards, 
+allowing the designed controllers to be executed and tested on the real system in real-time.

@@ -1,2 +1,52 @@
 \newpage
-\section{Theoretical Analysis}
+\section{Theoretical Analysis and Control Design}
+
+\subsection{System Modeling and Open-Loop Properties}
+
+\par A dinâmica não-linear do distema implica que este necessite de ser linearizado em torno de um ponto de equilíbrio, que
+dado o objetivo deste relatório, é o ponto de equilíbrio instável onde o pêndulo se encontra na posição vertical para cima. 
+Este equilíbrio corresponde a todas as variáveis de estado iguais a zero. A derivação do modelo não-linear e a subsequente 
+linearização não são objeto deste relatório, podendo ser encontrados no Capítulo 2 da tese de Samuel Balula \textbf{(fazer referência)}.
+O modelo linearizado do sistema que representa a dinâmica razoavelmente bem é dado por:
+
+\vspace{1pt}
+\[
+\begin{cases}
+\mathbf{\dot{x}} = A \mathbf{x} + B \mathbf{u} \\
+\mathbf{y} = C \mathbf{x} + D \mathbf{u}
+\end{cases}
+\]
+\vspace{1pt}
+
+\par onde $\mathbf{x} = [\alpha \ \dot{\alpha} \ \beta \ \dot{\beta} \ i]^T$ é o vetor de estados de dimensão 5 e $i$ é a corrente
+do motor. O vetor de entrada unidimensional $\mathbf{u} = u$ corresponde à diferença de potencial contínua, em \textit{Volts}, 
+aplicada nos terminais do motor DC através de um power amplifier, controlando diretamente $\alpha$. O vetor de saída 
+$\mathbf{y} = [\alpha \ \beta]^T$ é composto pelas medições dos sensores, correspondendo às posições angulares do braço e do 
+pêndulo, respetivamente.
+
+\par As matrizes do modelo $A$, $B$, $C$ e $D$
+
+{
+\[
+A =
+\begin{bmatrix}
+    0 & 1 & 0 & 0 & 0 \\
+    0 & -0.0174 & 20.7861 & -0.0023 & 57.5344 \\
+    0 & 0 & 0 & 1 & 0 \\
+    0 & -0.0174 & 63.8319 & -0.0071 & 57.4388 \\
+    0 & -232.0252 & 0 & 0 & -755.425
+\end{bmatrix}
+B =
+\]
+}
+
+\par \textbf{Q1, Q2, Q3, Q4}
+
+\subsection{LQR Controller Design}
+\par \textbf{Q5}
+
+\subsection{State Estimator Design - LQE}
+\par \textbf{Q6, Q7}
+
+\subsection{Baseline LQG Simulation}
+\par \textbf{Q8}

@@ -336,10 +336,6 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm
 INPUT ./main.toc
 INPUT ./main.toc
 INPUT main.toc
-OUTPUT main.toc
-INPUT ./Body/00 - Introduction.tex
-INPUT ./Body/00 - Introduction.tex
-INPUT Body/00 - Introduction.tex
 INPUT c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 INPUT c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
@@ -374,18 +370,29 @@ INPUT c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+OUTPUT main.toc
+INPUT ./Body/00 - Introduction.tex
+INPUT ./Body/00 - Introduction.tex
+INPUT Body/00 - Introduction.tex
 INPUT ./Body/01 - theoretical.tex
 INPUT ./Body/01 - theoretical.tex
 INPUT Body/01 - theoretical.tex
-INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmbx10.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmbx7.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/rm-lmbx5.tfm
 INPUT ./Body/02 - laboratory.tex
 INPUT ./Body/02 - laboratory.tex
 INPUT Body/02 - laboratory.tex
-INPUT ./Body/03 - Anexos.tex
-INPUT ./Body/03 - Anexos.tex
-INPUT Body/03 - Anexos.tex
+INPUT c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
+INPUT ./Body/03 - conclusion.tex
+INPUT ./Body/03 - conclusion.tex
+INPUT Body/03 - conclusion.tex
+INPUT ./Body/04 - Anexos.tex
+INPUT ./Body/04 - Anexos.tex
+INPUT Body/04 - Anexos.tex
 INPUT ./Body/Images/simulink.png
 INPUT ./Body/Images/simulink.png
 INPUT ./Body/Images/simulink.png
@@ -402,7 +409,11 @@ OUTPUT main.run.xml
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi7.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy7.pfb
