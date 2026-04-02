@@ -3,11 +3,10 @@
 
 \subsection{Space-State Formulation}
 
-\par A dinâmica não-linear do distema implica que este necessite de ser linearizado em torno de um ponto de equilíbrio, que
-dado o objetivo deste relatório, é o ponto de equilíbrio instável onde o pêndulo se encontra na posição vertical para cima. 
-Este equilíbrio corresponde a todas as variáveis de estado iguais a zero. A derivação do modelo não-linear e a subsequente 
-linearização não são objeto deste relatório, podendo ser encontrados no Capítulo 2 da tese de Samuel Balula \textbf{(fazer referência)}.
-O modelo linearizado do sistema que representa a dinâmica razoavelmente bem é dado por:
+\par The non-linear dynamics of the system imply that it needs to be linearized around an equilibrium point, which, given the objective of this report, is the unstable equilibrium where the pendulum is in the upright vertical position. 
+This equilibrium corresponds to all state variables being equal to zero. The derivation of the non-linear model and the subsequent 
+linearization are not the focus of this report and can be found in Chapter 2 of Samuel Balula's thesis \textbf{(reference needed)}.  
+The linearized model of the system, which reasonably represents the dynamics, is given by:
 
 \vspace{1pt}
 \[
@@ -18,13 +17,9 @@ O modelo linearizado do sistema que representa a dinâmica razoavelmente bem é 
 \]
 \vspace{1pt}
 
-\par onde $\mathbf{x} = [\alpha \ \dot{\alpha} \ \beta \ \dot{\beta} \ i]^T$ é o vetor de estados de dimensão 5 e $i$ é a corrente
-do motor. O vetor de entrada unidimensional $\mathbf{u} = u$ corresponde à diferença de potencial contínua, em \textit{Volts}, 
-aplicada nos terminais do motor DC através de um power amplifier, controlando diretamente $\alpha$. O vetor de saída 
-$\mathbf{y} = [\alpha \ \beta]^T$ é composto pelas medições dos sensores, correspondendo às posições angulares do braço e do 
-pêndulo, respetivamente.
+\par where $\mathbf{x} = [\alpha \ \dot{\alpha} \ \beta \ \dot{\beta} \ i]^T$ is the 5-dimensional state vector, and $i$ is the motor current. The one-dimensional input vector $\mathbf{u} = u$ corresponds to the DC voltage, in \textit{Volts}, applied to the terminals of the DC motor through a power amplifier, directly controlling $\alpha$. The output vector $\mathbf{y} = [\alpha \ \beta]^T$ consists of the sensor measurements, corresponding to the angular positions of the arm and the pendulum, respectively.
 
-\par As matrizes do modelo $A$, $B$, $C$ e $D$
+\par The system matrices $A$, $B$, $C$, and $D$ are given by:
 
 
 \[
@@ -203,6 +198,15 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
     \caption{Simulink implementation of the LQR controlled system.}
     \label{fig:lqr_simulink}
 \end{figure}
+\par By running the simulink for the initial condition $x_0 = \begin{bmatrix}
+    0.1 0 0 0 0 
+\end{bmatrix}$, it is possible to observe the evolution of the five states, converging to an equilibrium.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/Q6_states.pdf}
+    \caption{Time-domain response of the LQR controller}
+    \label{fig:lqr_simulink}
+\end{figure}
 
 \subsection{State Estimator Design - LQE}
 \par Because the observed output only consists of $\alpha$ and $\beta$, it is necessary to design an estimator (Kalman Filter) that computes the entire state vector from the limited observed states. Since the system is observable, it is guaranteed that the state vector can be reconstructed by observing outputs $\alpha$ and $\beta$ over an interval of time. 
@@ -237,3 +241,26 @@ u(t) = -K\hat{x}(t).
     \caption{Simulink implementation of the complete LQG system (Estimator + Controller).}
     \label{fig:lqg_simulink}
 \end{figure}
+\newpage
+\par By running the simulink with the initial condition $x_0 = \begin{bmatrix}0.1 & 0 & 0 & 0 & 0 \end{bmatrix}$, it is possible to obtain the evolution of the $\alpha$ and $\beta$ states, as well as the voltage $u$ outputed to the plant.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/Q8_angles.pdf}
+        \caption{Evolution of states $\alpha$ and $\beta$}
+        \label{fig:bode_alpha}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/Q8_voltage.pdf}
+        \caption{Evolution of the output $u$}
+        \label{fig:bode_beta}
+    \end{subfigure}
+    \label{fig:bode_plots_combined}
+\end{figure}
+
+\par It is possible to observe that both states are tracking the reference, with some minor overshoot.
+\newpage
