@@ -7,8 +7,8 @@
 
 \par The first stage of the experimental procedure involved the validation of the LQE. 
 To facilitate this, the LQG controller structure was decoupled into its two primary components: the 
-LQR regulator and the LQE observer. This separation was implemented in the Simulink model METER-MODELO by
-using independent blocks, as shown in the system diagram in Figure [X]. This configuration 
+LQR regulator and the LQE observer. This separation was implemented in the Simulink by
+using independent blocks, as shown in the system diagram in Figure \ref{fig:lqr_plus_lqe}. This configuration 
 allowed for the isolation of the estimator, enabling the monitoring of the observer's performance.
 
 \begin{figure}[htbp]
@@ -231,9 +231,9 @@ L \\
 \end{bmatrix},
 \end{equation}
 so that the new controller could still be simulated in the same Simulink architecture (\ref{fig:lqg}).
-\subsubsection{Simulation Study: Influence of the Integrator Weight}
+\subsubsection{Simulation Study - Influence of the Integrator Weight}
 
-\par After defining the augmented model, a first simulation was performed to evaluate
+\par After defining the augmented model, a first simulation (Fig. \ref{fig:q11}) was performed to evaluate
  the effect of the integrator weight in the LQR cost function. In this study, the last 
  diagonal term of $Q_r$ was varied while the remaining regulator and estimator parameters were 
  kept unchanged. This allowed us to assess how strongly the controller should penalize the 
@@ -256,7 +256,7 @@ expected trade-off between offset rejection speed and closed-loop smoothness.
 \subsubsection{Simulation with Constant Disturbance}
 
 \par To verify that the added integral action was effectively capable of rejecting constant biases, 
-a second simulation was performed including a constant disturbance of $0.1$~V at the input.
+a second simulation was performed including a constant disturbance of $0.1$~V at the input (Fig. \ref{fig:q11_1}).
 
 \begin{figure}[H]
     \centering
