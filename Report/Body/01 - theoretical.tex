@@ -131,7 +131,7 @@ CA^{n-1}
 \end{equation}
 
 \par Applying the \texttt{rank()} function shows that $\text{rank}(\mathcal{O}) = 5$, which equals the number of states. Therefore, the system is observable.
-\\
+\vspace{1.5cm}
 \subsubsection{Q4 - Bode Plots}
 \par To evaluate the frequency response of the system, the transfer functions of $\alpha$ and $\beta$ relative to the input $u$ were determined, resorting to the function \texttt{ss2tf()}:
 
@@ -155,14 +155,14 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/bode_plot_alpha.pdf}
         \caption{Bode plot for $\frac{\alpha(s)}{u(s)}$}
         \label{fig:bode_alpha}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \hspace{0.05\textwidth}%
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/bode_plot_beta.pdf}
         \caption{Bode plot for $\frac{\beta(s)}{u(s)}$}
@@ -195,10 +195,10 @@ The associated closed-loop state-space model becomes $\dot{x} = (A - BK)x$. Sinc
 \end{equation}
 
 \par In MATLAB, this process is handled automatically by the \texttt{lqr()} function. Based on this state-space model and the resulting optimal gain, we designed a preliminary Simulink model to simulate the plant and controller.
-\newpage
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.35\linewidth]{Body/Images/LQR.png}
+    \includegraphics[width=0.3\linewidth]{Body/Images/LQR.png}
     \caption{Simulink implementation of the LQR controlled system.}
     \label{fig:lqr_simulink}
 \end{figure}
@@ -207,7 +207,7 @@ The associated closed-loop state-space model becomes $\dot{x} = (A - BK)x$. Sinc
 \end{bmatrix}$, it is possible to observe the evolution of the five states, converging to an equilibrium.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Body/Images/Q6_states.pdf}
+    \includegraphics[width=0.4\linewidth]{Body/Images/Q6_states.pdf}
     \caption{Time-domain response of the LQR controller}
     \label{fig:lqr_simulink}
 \end{figure}
@@ -241,7 +241,7 @@ u(t) = -K\hat{x}(t).
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.6\linewidth]{Body/Images/LQE.png}
+    \includegraphics[width=0.4\linewidth]{Body/Images/LQE.png}
     \caption{Simulink implementation of the complete LQG system (Estimator + Controller).}
     \label{fig:lqg_simulink}
 \end{figure}
@@ -250,14 +250,14 @@ u(t) = -K\hat{x}(t).
 
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/Q8_angles.pdf}
         \caption{Evolution of states $\alpha$ and $\beta$}
         \label{fig:bode_alpha}
     \end{subfigure}
-\hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+\hspace{0.05\textwidth}%
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/Q8_voltage.pdf}
         \caption{Evolution of the output $u$}
@@ -269,14 +269,14 @@ u(t) = -K\hat{x}(t).
 \par Therefore, we varied the values of ${Q_r}_1$ and ${Q_r}_3$\footnote{To improve readibility, we adopted the convention of refering to entries of the $Q_r$ matrix based on the state they influence. For example ${Q_r}_1 = Q_r(\alpha)$ and ${Q_r}_3 = Q_r(\beta)$} with a fixed $R_r$ and vice-versa, in order to understand their effect on the system.
 \begin{figure}[htbp]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/Q9_Qr_alpha.pdf}
         \caption{Evolution of states $\alpha$ and $\beta$}
         \label{fig:Qr_alpha}
     \end{subfigure}
-\hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+\hspace{0.05\textwidth}%
+    \begin{subfigure}[b]{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/Q9_Qr_beta.pdf}
         \caption{Evolution of the output $u$}
@@ -285,14 +285,14 @@ u(t) = -K\hat{x}(t).
     \label{fig:bode_plots_combined}
     \caption{Effect of $Q_r$ on the evolution of states $\alpha$ and $\beta$}
 \end{figure}
-\newpage
+
 
 \par From Figures \ref{fig:Qr_alpha} and \ref{fig:Qr_beta}, it can be observed that increasing the weighting associated with $Q_r(\alpha)$ leads to a reduction in both the overshoot and settling time of the states $\alpha$ and $\beta$. This indicates that placing a higher penalty on deviations of $\alpha$ results in a faster and more well-damped overall system response. 
 
 \par Conversely, increasing the weighting $Q_r(\beta)$ produces a different effect: while it reduces the overshoot of state $\beta$, it tends to increase both the overshoot and settling time of state $\alpha$. This highlights the coupling between the system states and illustrates the trade-off inherent in selecting the weighting matrices.
 
 \par We also analyzed the influence of the control weighting matrix $R_r$ while keeping $Q_r$ fixed.
-
+\newpage
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{Body/Images/Q9_Rr.pdf}
