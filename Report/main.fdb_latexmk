@@ -1,17 +1,18 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1775155955.25701 -1
+["biber main"] 0 "main.bcf" "main.bbl" "main" 1775158783.22486 -1
   "Body/Bibliografia.bib" 1774996761 3293 cb06233e71562db086eee3e07e27202c ""
-  "main.bcf" 1775155955 108500 b4c1578c0f8452bc54d350498844cbd7 "pdflatex"
+  "main.bcf" 1775158782 108500 b4c1578c0f8452bc54d350498844cbd7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1775155953.90853 "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" "main.pdf" "main" 1775155955.25765 0
+["pdflatex"] 1775158781.75447 "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" "main.pdf" "main" 1775158783.22551 0
   "Body/00 - Introduction.tex" 1775138228 2636 17bcf619cf161894626b0e362b2d82b4 ""
-  "Body/01 - theoretical.tex" 1775155953 10638 3a1b7c7188bb7d8c5f2b161daa716706 ""
+  "Body/01 - theoretical.tex" 1775158781 13276 4838eb3fca86743384801ba08cfda2f5 ""
   "Body/02 - laboratory.tex" 1775143951 2361 b82fc8232202c2171785d47adf4cbba2 ""
   "Body/03 - conclusion.tex" 1775081789 34 07e671d9077e20a7c0bcd9e1722fcdd4 ""
   "Body/04 - Anexos.tex" 1775137297 33 a13cc200b69afb7596c7ecfedf5e34fa ""
+  "Body/Images/LQE.png" 1775157956 38037 09109ad94d15c88c68e19198a66f3f49 ""
   "Body/Images/LQR.png" 1775155517 23180 6fb20e9870dbba8cfc3ed5e829f23f44 ""
   "Body/Images/bode_plot_alpha.pdf" 1775138142 38455 ea728352f2dc8e560959ed17c637efaf ""
   "Body/Images/bode_plot_beta.pdf" 1775138142 38480 4e77d797c86f2b23f7fe081f510e7811 ""
@@ -207,16 +208,16 @@
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "Cover/cover.aux" 1775155954 4048 4ece081c3a127d7c495047347a22339f "pdflatex"
+  "Cover/cover.aux" 1775158782 4048 4ece081c3a127d7c495047347a22339f "pdflatex"
   "Cover/cover.tex" 1775082513 1839 50acc596a82b153e7a60961fa58eff54 ""
   "Cover/logoist.png" 1774996761 94452 34951721ae5adf2ae22b78080f3d81ce ""
   "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" 1775148092 2993 804577bfffd451cc2254bd090cf724e7 ""
-  "main.aux" 1775155955 4799 02deb35874bcb04bca798deecf1b2d07 "pdflatex"
+  "main.aux" 1775158782 5390 c3297d6f8d372f38a64043de5ba25f86 "pdflatex"
   "main.bbl" 1775143967 486 76d65a242ec496c9b4361af646ff12cb "biber main"
-  "main.out" 1775155955 3755 1b7d997314a2994f1053ae756488bcbd "pdflatex"
-  "main.run.xml" 1775155955 2315 e0df2825d80e5ab858bd447846abb6f3 "pdflatex"
+  "main.out" 1775158782 3755 1b7d997314a2994f1053ae756488bcbd "pdflatex"
+  "main.run.xml" 1775158782 2315 e0df2825d80e5ab858bd447846abb6f3 "pdflatex"
   "main.tex" 1775148092 2993 804577bfffd451cc2254bd090cf724e7 ""
-  "main.toc" 1775155955 2131 19661d6ed8963016253683a53ebf82e9 "pdflatex"
+  "main.toc" 1775158782 2131 19661d6ed8963016253683a53ebf82e9 "pdflatex"
   (generated)
   "Cover/cover.aux"
   "main.aux"

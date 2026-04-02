@@ -138,8 +138,8 @@ CA^{n-1}
 \par Applying the \texttt{rank()} function shows that $\text{rank}(\mathcal{O}) = 5$, which equals the number of states. Therefore, the system is observable.
 \\
 \subsubsection{Q4 - Bode Plots}
-\par The evaluate the frequency response of the system, the transfer functions of $\alpha$ and $\beta$ relative to the input $u$ were determined, resorting to the function \texttt{ss2tf()}:
-\\
+\par To evaluate the frequency response of the system, the transfer functions of $\alpha$ and $\beta$ relative to the input $u$ were determined, resorting to the function \texttt{ss2tf()}:
+
 \begin{equation}
     \frac{\alpha(s)}{u(s)} = \frac{
 1.92\times 10^{4}\, s^2 + 92.07\, s - 8.26\times 10^{5}
@@ -147,7 +147,7 @@ CA^{n-1}
 s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\times 10^{5}\, s
 }
 \end{equation}
-\\
+
 \begin{equation}
     \frac{\beta(s)}{u(s)} = \frac{
 0.1915\,s^2
@@ -155,7 +155,8 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
 s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\times 10^{5}\, s
 }
 \end{equation}
-\par With the above transfer functions, we generated the bode plots the caracterize their frequency response.
+
+\par With the above transfer functions, we generated the Bode plots to characterize their frequency response.
 
 \begin{figure}[htbp]
     \centering
@@ -176,23 +177,63 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
     \label{fig:bode_plots_combined}
 \end{figure}
 \newpage
-\par The frequency response of $\frac{\alpha(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4\, dB$ and a large phase margin $P_m = 83.3^{\circ}$. For frequencies below 1 rad/s, $\frac{\alpha(s)}{u(s)}$ amplifies inputs, whereas for higher frequencies this transfer functions attenuates inputs. The transfer function $\frac{\beta(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4\, dB$, and an infinite phase margin, because the gain never reaches zero.  
-\subsection{LQR Controller Design}
-\par The initial approach to controlling the system involved designing a simple Linear Quadratic Regulator, implementing the control law $u(t) = -K x(t)$. The associated space-state model is $\dot x = A - BK$ and since the pair (A, B) is controllable, it is possible to place the poles of the system in any arbitrary position. To calculate the optimal gain, K, it is necessary to define a cost function J:
 
-\begin{equation}
-    J = \frac 1 2 \int_{0}^{\infty} \mathbf{x}^TQ\mathbf{x} + \mathbf{u}^T R \mathbf{u} \ dt
+\par The frequency response of $\frac{\alpha(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4$ dB, and a large phase margin, $P_m = 83.3^{\circ}$. For frequencies below $1$ rad/s, $\frac{\alpha(s)}{u(s)}$ amplifies inputs, whereas for higher frequencies this transfer function attenuates inputs. The transfer function $\frac{\beta(s)}{u(s)}$ is also characterized by a large gain margin, $G_m = 54.4$ dB, but possesses an infinite phase margin because the magnitude curve never crosses the $0$ dB threshold.  
+
+\subsection{LQR Controller Design}
+\par The initial approach to controlling the system involved designing a simple Linear Quadratic Regulator (LQR), implementing the state-feedback control law $u(t) = -K x(t)$. The associated closed-loop state-space model becomes $\dot{x} = (A - BK)x$. Since the pair $(A, B)$ is controllable, it is theoretically possible to place the poles of the system in any arbitrary position. To calculate the optimal gain matrix $K$, it is necessary to define a quadratic cost function $J$:
+
+\begin{equation} \label{eq:lqr_cost}
+    J = \frac{1}{2} \int_{0}^{\infty} \left( \mathbf{x}^T Q \mathbf{x} + \mathbf{u}^T R \mathbf{u} \right) dt
 \end{equation}
 
-\par Where $Q_r$ is the process covariance matrix and $R_r$ is the measurement covariance matrix. The ratio of $Q_r$ to $R_r$ indicates how much the system trust the measurements as opposed to the model predictions. Generally, higher values in $Q_r$ paired with low values of $R_r$ indicate that the system trusts measurements more. Based on the associated space-state model, we designed a preliminar simulink to simulate the model.
-\begin{figure}[h]
+\par Here, $Q$ is the state weighting matrix that penalizes deviations from the desired state, and $R$ is the control weighting matrix that penalizes actuator effort. By tuning the ratio between $Q$ and $R$, we balance aggressive trajectory tracking against control energy consumption. 
+
+\par The optimal state-feedback gain matrix $K$ that minimizes this cost function is given by the expression $K = R^{-1} B^T P$. To obtain the matrix $P$, the Continuous Algebraic Riccati Equation (CARE) must be solved:
+
+\begin{equation} \label{eq:lqr_care}
+    A^T P + P A - P B R^{-1} B^T P + Q = 0
+\end{equation}
+
+\par In MATLAB, this process is handled automatically by the \texttt{lqr()} function. Based on this state-space model and the resulting optimal gain, we designed a preliminary Simulink model to simulate the plant and controller.
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Body/Images/LQR.png}
-    \caption{Simulink of the LQR of the system}
-    \label{fig:bode}
+    \includegraphics[width=0.3\linewidth]{Body/Images/LQR.png}
+    \caption{Simulink implementation of the LQR controlled system.}
+    \label{fig:lqr_simulink}
 \end{figure}
 
 \subsection{State Estimator Design - LQE}
-\par Because the observed output is only $\alpha$ and $\beta$, it is necessary to design an estimator that computes the entire state vector from the observed states. Since the system is observable, it is guaranteed that the state vector can always be reconstructed by observing state $\alpha$ and $\beta$ over an interval of time. 
+\par Because the observed output only consists of $\alpha$ and $\beta$, it is necessary to design an estimator (Kalman Filter) that computes the entire state vector from the limited observed states. Since the system is observable, it is guaranteed that the state vector can be reconstructed by observing outputs $\alpha$ and $\beta$ over an interval of time. 
+
+\par The estimated state model is given by:
+\begin{equation} \label{eq:estimator_dyn}
+    \dot{\hat{x}} = A \hat{x} + Bu + L(y - C \hat{x})
+\end{equation}
+
+\par The observer adds its own dynamics to the overall system, governed by the eigenvalues of $A - LC$. To compute the optimal estimator gain $L$, we consider the process noise covariance matrix $Q_r$ and the measurement noise covariance matrix $R_r$. The ratio of $Q_r$ to $R_r$ indicates how much the estimator trusts the physical measurements versus the mathematical model's predictions. High values in $Q_r$ paired with low values in $R_r$ indicate that the system should trust the incoming sensor measurements more.
+
+\par The estimator gain $L$ is obtained via the expression $L = P C^T R_r^{-1}$, where the matrix $P$ (the error covariance) is found by solving the Continuous Algebraic Riccati Equation (CARE):
+
+\begin{equation}
+A P + P A^T - P C^T R_r^{-1} C P + G Q_r G^T = 0
+\end{equation}
+\par In the present work, we computed the optimal estimator gain by resorting to MATLAB's \texttt{lqe()} function.
+
 \subsection{Baseline LQG Simulation}
-\par \textbf{Q8}
+\par By combining the LQR controller with the LQE observer, we create a Linear Quadratic Gaussian (LQG) controller. In this architecture, the estimated states are fed to the control law, which then computes the inputs to the plant. By combining Equation \ref{eq:lqr_cost} with Equation \ref{eq:estimator_dyn}, it is possible to arrive at the unified model for the controller block:
+
+\begin{gather}
+\dot{\hat{x}} = (A - BK - LC)\hat{x} + Ly, \\
+u(t) = -K\hat{x}(t).
+\end{gather}
+
+\par The implementation of the observer paired with the controller—featuring the dynamic matrix $A - BK - LC$, input matrix $L$, and output matrix $-K$—led us to the following Simulink block diagram implementation:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Body/Images/LQE.png}
+    \caption{Simulink implementation of the complete LQG system (Estimator + Controller).}
+    \label{fig:lqg_simulink}
+\end{figure}
