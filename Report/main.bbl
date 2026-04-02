@@ -16,5 +16,37 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{balula2016inverted}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=32eb8bbfc8de3a85c70ae13e66c3c59b}{%
+           family={Balula},
+           familyi={B\bibinitperiod},
+           given={António\bibnamedelimb Samuel\bibnamedelima Ávila},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim Á\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Instituto Superior Técnico, Universidade de Lisboa}%
+      }
+      \strng{namehash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{fullhash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{fullhashraw}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{bibnamehash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{authorbibnamehash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{authornamehash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{authorfullhash}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \strng{authorfullhashraw}{32eb8bbfc8de3a85c70ae13e66c3c59b}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nonlinear Control of an Inverted Pendulum}
+      \field{type}{Master's thesis}
+      \field{year}{2016}
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 
