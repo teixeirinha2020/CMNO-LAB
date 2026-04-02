@@ -395,7 +395,6 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmtt10.tfm
-INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr8.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr6.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi8.tfm
@@ -408,23 +407,36 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\sym
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT .\Body\Images\bode_plot_alpha.pdf
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr9.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi9.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy9.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx9.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT .\Body\Images\bode_plot_beta.pdf
+INPUT .\Body\Images\bode_plot_beta.pdf
+INPUT .\Body\Images\bode_plot_beta.pdf
+INPUT .\Body\Images\bode_plot_beta.pdf
+INPUT .\Body\Images\bode_plot_beta.pdf
+INPUT .\Body\Images\bode_plot_beta.pdf
 INPUT .\Body\02 - laboratory.tex
 INPUT .\Body\02 - laboratory.tex
 INPUT Body\02 - laboratory.tex
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr10.tfm
 INPUT .\Body\03 - conclusion.tex
 INPUT .\Body\03 - conclusion.tex
 INPUT Body\03 - conclusion.tex
 INPUT .\Body\04 - Anexos.tex
 INPUT .\Body\04 - Anexos.tex
 INPUT Body\04 - Anexos.tex
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
-INPUT .\Body\Images\simulink.png
 INPUT main.aux
 INPUT .\Cover\cover.aux
 INPUT .\Cover\cover.aux
@@ -447,6 +459,8 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.p
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi9.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi9.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
@@ -457,10 +471,14 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pf
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr9.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr9.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy6.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy6.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
