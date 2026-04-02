@@ -1,10 +1,45 @@
 \newpage
 \section{Laboratory Work and Experimental Results}
 
-\subsection{Realistic System Simulation}
+\subsection{Initial Hardware Testing}
 
-\subsection{Initial Controller Testing on Physical Hardware}
+\subsubsection{LQE Validation}
 
-\subsection{Compensation of Non-Linearities: Motor Deadzone and Steady-State Error}
+\par Before testing the performance of the LQG controller, the performance of the LQE was strictly 
+validated on the physical hardware. The primary objective was to ensure that the estimated state 
+vector, $\hat{x}$, accurately tracked the physical system's dynamics—specifically the angular 
+positions $\alpha$ and $\beta$
 
-\subsection{Final Controller Tuning and Disturbance Rejection}
+\par A fundamental observation regarding the experimental setup was the high precision and 
+discrete nature of the sensors. The Quanser platform utilizes a potentiometer for the rotary arm 
+and a high-resolution optical encoder for the pendulum angle. Due to their discrete characteristics 
+and high accuracy, the measurement noise was found to be negligible, effectively implying a standard 
+deviation of zero in ideal conditions. However, to maintain numerical robustness in the Kalman Filter 
+algorithm and reflect a high degree of confidence in the hardware readings, the measurement noise 
+covariance matrix was set to:
+
+\begin{equation}
+    R_e = I_2 \cdot (\text{deg2rad}(0.1))^2
+\end{equation}
+
+\par This value corresponds to a very small standard deviation of 0.1°, prioritizing the sensor 
+data over the model's predictions. To optimize the estimator's transient response, the process noise 
+covariance matrix, $Q_e$, was tuned through empirical testing on the hardware.
+
+\par Figure [X] presents a comparative analysis of the LQE performance for three different 
+weights: $Q_e = 0.1 \cdot I_5$, $Q_e = I_5$ and $Q_e = 10 \cdot I_5$. By examining the plots of the 
+measured angles ($\alpha, \beta$) against their respective estimates ($\hat{\alpha}, \hat{\beta}$), 
+it is evident that the configuration with $Q_e = 10 \cdot I_5$ provided superior tracking fidelity. 
+This setup allowed the estimates to converge rapidly to the physical values with minimal lag, 
+ensuring that the velocity states (which are not directly measured) were also accurately derived. 
+Based on this visual validation, the more aggressive tuning was selected for the subsequent stages 
+of the project.
+
+\subsubsection{LQG Testing}
+
+\subsubsection{Analysis and Problems}
+
+
+\subsection{Propused Solutions and Simulation}
+
+\subsection{Final Hardware Testing and Validation}
