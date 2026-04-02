@@ -5,39 +5,97 @@
 
 \subsubsection{LQE Validation}
 
-\par Before testing the performance of the LQG controller, the performance of the LQE was strictly 
-validated on the physical hardware. The primary objective was to ensure that the estimated state 
-vector, $\hat{x}$, accurately tracked the physical system's dynamics—specifically the angular 
-positions $\alpha$ and $\beta$
+\par The first stage of the experimental procedure involved the validation of the LQE. 
+To facilitate this, the LQG controller structure was decoupled into its two primary components: the 
+LQR regulator and the LQE observer. This separation was implemented in the Simulink model METER-MODELO by
+using independent blocks, as shown in the system diagram in Figure [X]. This configuration 
+allowed for the isolation of the estimator, enabling the monitoring of the observer's performance.
 
-\par A fundamental observation regarding the experimental setup was the high precision and 
-discrete nature of the sensors. The Quanser platform utilizes a potentiometer for the rotary arm 
-and a high-resolution optical encoder for the pendulum angle. Due to their discrete characteristics 
-and high accuracy, the measurement noise was found to be negligible, effectively implying a standard 
-deviation of zero in ideal conditions. However, to maintain numerical robustness in the Kalman Filter 
-algorithm and reflect a high degree of confidence in the hardware readings, the measurement noise 
-covariance matrix was set to:
+\par The primary objective of this test was first, to ensure that the estimated states $\hat{\alpha}$ and
+ $\hat{\beta}$ accurately tracked the raw angular measurements; and second, to verify that the 
+remaining three unmeasured 
+states behaved smoothly and remained strictly within expected physical boundaries, without exhibiting 
+erratic fluctuations or excessive noise amplification. This objective was achieved by tuning the 
+estimator's noise covariance matrices, $Q_e$ and $R_e$.
+
+\par A fundamental observation regarding the experimental setup was the high precision of the 
+discrete sensors. The Quanser platform utilizes a potentiometer for the rotary arm and a 
+high-resolution optical encoder for the pendulum angle. Due to their discrete nature, the 
+continuous measurement noise was found to be practically negligible. However, to ensure numerical 
+stability in the Kalman Filter algorithm and to reflect a high degree of confidence in the hardware 
+readings, the measurement noise covariance matrix was set to:
 
 \begin{equation}
     R_e = I_2 \cdot (\text{deg2rad}(0.1))^2
 \end{equation}
 
-\par This value corresponds to a very small standard deviation of 0.1°, prioritizing the sensor 
-data over the model's predictions. To optimize the estimator's transient response, the process noise 
-covariance matrix, $Q_e$, was tuned through empirical testing on the hardware.
+\par With $R_e$ fixed to admit a standard deviation of only $0.1^\circ$, the $Q_e$ matrix was 
+tuned empirically through hardware trials. In the Kalman Filter framework, it is the relative ratio 
+between these covariance matrices ($Q_e / R_e$) that dictates the observer's gain and dynamic 
+behavior. A high ratio yields a highly reactive filter, whereas a low ratio produces a slower, 
+heavily filtered response.
 
-\par Figure [X] presents a comparative analysis of the LQE performance for three different 
-weights: $Q_e = 0.1 \cdot I_5$, $Q_e = I_5$ and $Q_e = 10 \cdot I_5$. By examining the plots of the 
-measured angles ($\alpha, \beta$) against their respective estimates ($\hat{\alpha}, \hat{\beta}$), 
-it is evident that the configuration with $Q_e = 10 \cdot I_5$ provided superior tracking fidelity. 
-This setup allowed the estimates to converge rapidly to the physical values with minimal lag, 
-ensuring that the velocity states (which are not directly measured) were also accurately derived. 
-Based on this visual validation, the more aggressive tuning was selected for the subsequent stages 
-of the project.
+\par To find the optimal balance, ensuring accurate tracking while avoiding overfitting, 
+three distinct tests were performed by scaling the process noise identity matrix keeping $R_e$ constant: 
+$Q_e = 0.1 \cdot I_5$, $Q_e = I_5$, and $Q_e = 10 \cdot I_5$.
+
+\par As illustrated in Figure [X], the system's real-time plots were analyzed for each configuration. 
+The results demonstrated that while lower values of $Q_e$ introduced a noticeable lag, the 
+configuration with [INSERIR QUAL FOI O MELHOR] provided the best overall 
+performance. It allowed the estimates $\hat{\alpha}$ and $\hat{\beta}$ to converge rapidly to the 
+physical measurements with high fidelity. Crucially, the plots also confirmed that the three 
+unmeasured states exhibited coherent dynamic trends, remaining well within the expected operational 
+limits during the pendulum's motion. This thoroughly validated LQE setup was then adopted for all 
+subsequent closed-loop experiments.
+
+\vspace{8pt}
 
 \subsubsection{LQG Testing}
 
+\par Following the validation of the LQE, the complete LQG controller was implemented on the 
+hardware. The weighting matrices for the LQR regulator, $Q_r$ and $R_r$, were selected based on the 
+optimal values determined during the theoretical simulation phase. However, for this test, we decided
+to maintain the default values of ..... 
+
+\par The explicit objective of this hardware test was to demonstrate a fundamental 
+limitation of the standard LQG architecture: its inability to stabilize the rotary 
+arm ($\alpha$) at a complete standstill at the origin.
+
+\par To evaluate this, a physical disturbance was introduced to the system during operation. 
+As illustrated in the experimental plots in Figure \ref{fig:lqg_default_pert}, while the controller successfully 
+kept the pendulum upright, the rotary arm failed to return to the zero position. Instead, 
+$\alpha$ exhibited a persistent steady-state error, drifting and coming to a stop away from 
+the reference point.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Body/Images/lqg_default.pdf}
+    \caption{Default LQG response to a physical disturbance.}
+    \label{fig:lqg_default_pert}
+\end{figure}
+
+
 \subsubsection{Analysis and Problems}
+
+\par An analysis of this drift revealed two coupled causes rooted in the hardware's physical 
+properties and the controller's structure:
+
+\begin{itemize}
+    \item Motor Deadzone: The DC motor only actuates when the applied voltage exceeds a specific 
+    threshold. Within this deadzone range, the control inputs ($u$) calculated by the LQR do 
+    absolutely nothing. As a consequence, the rotary arm will always exhibit a large amplitude of 
+    oscillation. The system drifts until the position error grows large enough for the controller to 
+    finally command a voltage that breaks through the deadzone, causing the motor to suddenly move, 
+    overshoot, and repeat the cycle.
+
+    \item Absence of an Integrative State: The problem of the steady-state drift is fundamentally 
+    tied to the composition of our state vector. The standard LQR model relies strictly on the 
+    proportional feedback of the position and velocity states. Because it lacks an integrative 
+    state dedicated to accumulating the error of $\alpha$ over time, the controller has no 
+    "memory." It inherently accepts steady-state offsets whenever the proportional control effort 
+    generated by that offset is smaller than the deadzone resistance, causing the arm to settle 
+    away from the reference point.
+\end{itemize}
 
 
 \subsection{Propused Solutions and Simulation}

@@ -9,9 +9,9 @@ Theory:
 
 Lab Work:
 **Parte 1 - Pré-integrador**:
-- [ ] Explicar como tunamos os ganhos do estimador para a primeira sessão (metemos o que estava no enunciado)
-- [ ] Apresentar gráficos para diferentes valores de Q (SIM)
-- [ ] Mostrar gráficos experimentais que comprovem que os ganhos que escolhemos fazem sentido (EXP)
+- [X] Explicar como tunamos os ganhos do estimador para a primeira sessão (metemos o que estava no enunciado)
+- [X] Apresentar gráficos para diferentes valores de Q (SIM)
+- [X] Mostrar gráficos experimentais que comprovem que os ganhos que escolhemos fazem sentido (EXP)
 
 
 **Parte 2 - Integrador sem Compensador**:
