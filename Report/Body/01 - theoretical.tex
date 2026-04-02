@@ -176,7 +176,11 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
 \par The frequency response of $\frac{\alpha(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4$ dB, and a large phase margin, $P_m = 83.3^{\circ}$. For frequencies below $1$ rad/s, $\frac{\alpha(s)}{u(s)}$ amplifies inputs, whereas for higher frequencies this transfer function attenuates inputs. The transfer function $\frac{\beta(s)}{u(s)}$ is also characterized by a large gain margin, $G_m = 54.4$ dB, but possesses an infinite phase margin because the magnitude curve never crosses the $0$ dB threshold.  
 
 \subsection{LQR Controller Design}
-\par The initial approach to controlling the system involved designing a simple Linear Quadratic Regulator (LQR), implementing the state-feedback control law $u(t) = -K x(t)$. The associated closed-loop state-space model becomes $\dot{x} = (A - BK)x$. Since the pair $(A, B)$ is controllable, it is theoretically possible to place the poles of the system in any arbitrary position. To calculate the optimal gain matrix $K$, it is necessary to define a quadratic cost function $J$:
+\par The initial approach to controlling the system involved designing a simple Linear Quadratic Regulator (LQR), implementing the state-feedback control law:
+\begin{equation}
+u(t) = -K x(t)
+\end{equation}
+The associated closed-loop state-space model becomes $\dot{x} = (A - BK)x$. Since the pair $(A, B)$ is controllable, it is theoretically possible to place the poles of the system in any arbitrary position. To calculate the optimal gain matrix $K$, it is necessary to define a quadratic cost function $J$:
 
 \begin{equation} \label{eq:lqr_cost}
     J = \frac{1}{2} \int_{0}^{\infty} \left( \mathbf{x}^T Q \mathbf{x} + \mathbf{u}^T R \mathbf{u} \right) dt
@@ -191,15 +195,15 @@ s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\ti
 \end{equation}
 
 \par In MATLAB, this process is handled automatically by the \texttt{lqr()} function. Based on this state-space model and the resulting optimal gain, we designed a preliminary Simulink model to simulate the plant and controller.
-
+\newpage
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.3\linewidth]{Body/Images/LQR.png}
+    \includegraphics[width=0.35\linewidth]{Body/Images/LQR.png}
     \caption{Simulink implementation of the LQR controlled system.}
     \label{fig:lqr_simulink}
 \end{figure}
 \par By running the simulink for the initial condition $x_0 = \begin{bmatrix}
-    0.1 0 0 0 0 
+    0.1 & 0 & 0 & 0 & 0 
 \end{bmatrix}$, it is possible to observe the evolution of the five states, converging to an equilibrium.
 \begin{figure}[htbp]
     \centering
@@ -241,7 +245,7 @@ u(t) = -K\hat{x}(t).
     \caption{Simulink implementation of the complete LQG system (Estimator + Controller).}
     \label{fig:lqg_simulink}
 \end{figure}
-\newpage
+
 \par By running the simulink with the initial condition $x_0 = \begin{bmatrix}0.1 & 0 & 0 & 0 & 0 \end{bmatrix}$, it is possible to obtain the evolution of the $\alpha$ and $\beta$ states, as well as the voltage $u$ outputed to the plant.
 
 \begin{figure}[htbp]
@@ -261,6 +265,39 @@ u(t) = -K\hat{x}(t).
     \end{subfigure}
     \label{fig:bode_plots_combined}
 \end{figure}
-
-\par It is possible to observe that both states are tracking the reference, with some minor overshoot.
+\par It is possible to observe that both states are tracking the reference, with some minor overshoot. At this stage, it became paramount to understand the influence $Q_r$ and $R_r$ had on the response of the system. It is noted that multiplying $Q_r$ and $R_r$ by a constant $K$ does not influence the system response. This is because any multiplying constant in the cost function \eqref{eq:lqr_cost} can be factored out of the integral and does not change the optimal gain $K$. Consequently, only the relative weighting between $Q_r$ and $R_r$ determines the trade-off between minimizing state deviations and minimizing control effort.
+\par Therefore, we varied the values of ${Q_r}_1$ and ${Q_r}_3$\footnote{To improve readibility, we adopted the convention of refering to entries of the $Q_r$ matrix based on the state they influence. For example ${Q_r}_1 = Q_r(\alpha)$ and ${Q_r}_3 = Q_r(\beta)$} with a fixed $R_r$ and vice-versa, in order to understand their effect on the system.
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/Q9_Qr_alpha.pdf}
+        \caption{Evolution of states $\alpha$ and $\beta$}
+        \label{fig:Qr_alpha}
+    \end{subfigure}
+\hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/Q9_Qr_beta.pdf}
+        \caption{Evolution of the output $u$}
+        \label{fig:Qr_beta}
+    \end{subfigure}
+    \label{fig:bode_plots_combined}
+    \caption{Effect of $Q_r$ on the evolution of states $\alpha$ and $\beta$}
+\end{figure}
 \newpage
+
+\par From Figures \ref{fig:Qr_alpha} and \ref{fig:Qr_beta}, it can be observed that increasing the weighting associated with $Q_r(\alpha)$ leads to a reduction in both the overshoot and settling time of the states $\alpha$ and $\beta$. This indicates that placing a higher penalty on deviations of $\alpha$ results in a faster and more well-damped overall system response. 
+
+\par Conversely, increasing the weighting $Q_r(\beta)$ produces a different effect: while it reduces the overshoot of state $\beta$, it tends to increase both the overshoot and settling time of state $\alpha$. This highlights the coupling between the system states and illustrates the trade-off inherent in selecting the weighting matrices.
+
+\par We also analyzed the influence of the control weighting matrix $R_r$ while keeping $Q_r$ fixed.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/Q9_Rr.pdf}
+    \caption{Influence of $R_r$ on the system response.}
+    \label{fig:Rr_LQG}
+\end{figure}
+
+\par From Figure \ref{fig:Rr_LQG}, it is evident that decreasing $R_r$ reduces both the overshoot and the settling time. This occurs because a smaller $R_r$ penalizes the control effort less, allowing the controller to act more aggressively and respond faster to deviations from the reference.
