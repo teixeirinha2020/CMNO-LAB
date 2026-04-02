@@ -11,6 +11,13 @@ LQR regulator and the LQE observer. This separation was implemented in the Simul
 using independent blocks, as shown in the system diagram in Figure [X]. This configuration 
 allowed for the isolation of the estimator, enabling the monitoring of the observer's performance.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Body/Images/LQR+LQE.png}
+    \caption{Simulink implementation of the complete LQR + LQE architecture for hardware validation.}
+    \label{fig:lqr_plus_lqe}
+\end{figure}
+
 \par The primary objective of this test was first, to ensure that the estimated states $\hat{\alpha}$ and
  $\hat{\beta}$ accurately tracked the raw angular measurements; and second, to verify that the 
 remaining three unmeasured 
@@ -39,14 +46,33 @@ heavily filtered response.
 three distinct tests were performed by scaling the process noise identity matrix keeping $R_e$ constant: 
 $Q_e = 0.1 \cdot I_5$, $Q_e = I_5$, and $Q_e = 10 \cdot I_5$.
 
-\par As illustrated in Figure [X], the system's real-time plots were analyzed for each configuration. 
+\par As illustrated in Figures \ref{fig:lqe_plots_q10}, \ref{fig:lqe_plots_qe1}, \ref{fig:lqe_plots_qe0_1}, the system's real-time plots were analyzed for each configuration. 
 The results demonstrated that while lower values of $Q_e$ introduced a noticeable lag, the 
-configuration with [INSERIR QUAL FOI O MELHOR] provided the best overall 
+configuration with $Q_e = 10 \cdot I_5$ provided the best overall 
 performance. It allowed the estimates $\hat{\alpha}$ and $\hat{\beta}$ to converge rapidly to the 
 physical measurements with high fidelity. Crucially, the plots also confirmed that the three 
 unmeasured states exhibited coherent dynamic trends, remaining well within the expected operational 
 limits during the pendulum's motion. This thoroughly validated LQE setup was then adopted for all 
 subsequent closed-loop experiments.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/qe10.pdf}
+        \caption{$\alpha$ and $\beta$ estimates compared to measurements.}
+        \label{fig:qe10}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/qe10_estimated.pdf}
+        \caption{Unmeasured states $\hat{\dot{\alpha}}$, $\hat{\dot{\beta}}$, and $\hat{i}$ and measured states.}
+        \label{fig:qe10_estimated}
+    \end{subfigure}
+    \caption{Experimental results of the LQE validation for $Q_e = 10 \cdot I_5$.}
+    \label{fig:lqe_plots_q10}
+\end{figure}
 
 \vspace{8pt}
 
@@ -55,7 +81,7 @@ subsequent closed-loop experiments.
 \par Following the validation of the LQE, the complete LQG controller was implemented on the 
 hardware. The weighting matrices for the LQR regulator, $Q_r$ and $R_r$, were selected based on the 
 optimal values determined during the theoretical simulation phase. However, for this test, we decided
-to maintain the default values of ..... 
+to maintain the default values of $Q_r = diag(10, 0, 1, 0, 0)$ and $R_r = 0.01$.
 
 \par The explicit objective of this hardware test was to demonstrate a fundamental 
 limitation of the standard LQG architecture: its inability to stabilize the rotary 
@@ -97,6 +123,204 @@ properties and the controller's structure:
     away from the reference point.
 \end{itemize}
 
-\subsection{LQG Integrator}
+\subsection{LQG with Integral Action: Theory and Validation}
+
+\par To eliminate the steady-state drift of the rotary arm, an integral action was added to 
+the controller by introducing a new state associated with the angle $\alpha$. The purpose 
+of this additional state is to accumulate the arm-position error over time, so that any 
+persistent offset generates an increasing corrective action. In the original LQG formulation, 
+the control law depended only on proportional feedback of the estimated states, which means 
+that a constant bias or disturbance could be balanced by a non-zero steady-state value of $\alpha$. 
+As a result, the pendulum could remain stabilized while the arm settled away from the origin. 
+The added integrator removes this limitation by giving the controller memory of the accumulated 
+error. This directly addresses the limitation identified in the previous subsection as the absence 
+of an integrative state. 
+
+\subsubsection{Theoretical Approach and Augmented State-Space}
+
+\par Let the original state be $x \in \mathbb{R}^5$, and define the new integrator state as
+\begin{equation}
+\xi_{\alpha}(t)=\int_0^t \alpha(\tau)\,d\tau .
+\end{equation}
+
+\par Since the reference for $\alpha$ is zero, integrating $\alpha$ is equivalent, up to 
+sign convention, to integrating the tracking error. Using the first output row of the 
+measurement matrix,
+\[
+C_{\alpha}=C(1,:)=[\,1\ 0\ 0\ 0\ 0\,],
+\]
+the augmented state becomes
+\begin{equation}
+z=
+\begin{bmatrix}
+x\\
+\xi_{\alpha}
+\end{bmatrix},
+\qquad
+\dot{\xi}_{\alpha}=C_{\alpha}x.
+\end{equation}
+
+\par The augmented model used for controller design is therefore written as
+\begin{equation}
+\dot{z}=A_{\mathrm{aug}}z+B_{\mathrm{aug}}u,
+\qquad
+y=C_{\mathrm{aug}}z,
+\end{equation}
+with
+\begin{equation}
+A_{\mathrm{aug}}=
+\begin{bmatrix}
+A & 0\\
+C_{\alpha} & 0
+\end{bmatrix},
+\qquad
+B_{\mathrm{aug}}=
+\begin{bmatrix}
+B\\
+0
+\end{bmatrix},
+\qquad
+C_{\mathrm{aug}}=
+\begin{bmatrix}
+C & 0
+\end{bmatrix}.
+\end{equation}
+
+\par The LQR design was then repeated for this augmented system. The quadratic cost becomes
+\begin{equation}
+J=\int_0^{\infty}\left(z^{T}Q_{r}z+R_{r}u^{2}\right)\,dt,
+\end{equation}
+where the last diagonal term of $Q_r$ penalizes the new integrator state. The resulting 
+augmented gain is
+\begin{equation}
+K_{\mathrm{aug}}=
+\begin{bmatrix}
+K_x & K_i
+\end{bmatrix},
+\end{equation}
+leading to the control law
+\begin{equation}
+u=-K_{\mathrm{aug}}\hat{z}=-K_x\hat{x}-K_i\xi_{\alpha}.
+\end{equation}
+
+\par This extra term is precisely what forces the mean value of $\alpha$ back to zero in the 
+presence of constant biases or disturbances. In practical terms, if $\alpha$ remains offset 
+from zero, the integrator state continues to grow, causing the control action to increase until 
+the offset is rejected.
+
+The Simulink implementation remained structurally unchanged (\ref{fig:lqg}). The same controller block used 
+previously for the LQG design was preserved, and only the matrices inside the block were replaced 
+by their augmented versions. In particular, the controller realization becomes
+\begin{equation}
+A_c=A_{\mathrm{aug}}-B_{\mathrm{aug}}K_{\mathrm{aug}}-L_{\mathrm{aug}}C_{\mathrm{aug}},
+\qquad
+B_c=L_{\mathrm{aug}},
+\qquad
+C_c=-K_{\mathrm{aug}},
+\qquad
+D_c=0.
+\end{equation}
+
+For implementation, the estimator for the original five physical states was kept, and the gain 
+was extended as
+\begin{equation}
+L_{\mathrm{aug}}=
+\begin{bmatrix}
+L \\
+1 \quad 0
+\end{bmatrix},
+\end{equation}
+so that the new controller could still be simulated in the same Simulink architecture (\ref{fig:lqg}).
+\subsubsection{Simulation Study: Influence of the Integrator Weight}
+
+\par After defining the augmented model, a first simulation was performed to evaluate
+ the effect of the integrator weight in the LQR cost function. In this study, the last 
+ diagonal term of $Q_r$ was varied while the remaining regulator and estimator parameters were 
+ kept unchanged. This allowed us to assess how strongly the controller should penalize the 
+ accumulated error in $\alpha$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Body/Images/Q11_Qr_alpha_int.pdf}
+    \caption{Simulation results with $\alpha$-integrator for different values of the integrator weight in $Q_r$.}
+    \label{fig:q11_qr_alpha_int}
+\end{figure}
+
+\par As shown in Figure \ref{fig:q11_qr_alpha_int}, all tested configurations stabilize the system and 
+eliminate the residual offset in $\alpha$. However, the choice of the integrator weight affects 
+the transient response. Increasing the weight associated with the integral state generally makes 
+the return of $\alpha$ to the origin faster, but also leads to a more aggressive response, with 
+larger oscillations and stronger coupling into $\beta$. Therefore, this parameter introduces the 
+expected trade-off between offset rejection speed and closed-loop smoothness.
+
+\subsubsection{Simulation with Constant Disturbance}
+
+\par To verify that the added integral action was effectively capable of rejecting constant biases, 
+a second simulation was performed including a constant disturbance of $0.1$~V at the input.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Body/Images/Q11_alpha_integrator.pdf}
+    \caption{Simulation response of the LQG controller with $\alpha$-integrator under a constant disturbance of $0.1$~V.}
+    \label{fig:q11_alpha_integrator_dist}
+\end{figure}
+
+\par The results in Fig.~\ref{fig:q11_alpha_integrator_dist} show that the controlled system is still 
+able to drive the states back to the neighbourhood of the origin despite the persistent 
+perturbation. This confirms the main purpose of the integral action: a 
+constant disturbance produces a non-zero accumulated error, which in turn increases 
+the control effort until the disturbance is compensated. In other words, the augmented 
+controller no longer accepts a steady-state offset in $\alpha$ as an equilibrium condition.
+
+\subsubsection{Experimental Validation without External Disturbance}
+
+\par After the simulation analysis, an experimental test was conducted on the real setup 
+using the $\alpha$-integrator, with integrator weight equal to $1$ and the remaining $Q_r$ 
+parameters kept at their default values. The purpose of this experiment was to verify whether 
+the behaviour predicted in simulation could be reproduced on the real plant even in the absence 
+of an external perturbation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Body/Images/lqg_integrator.pdf}
+    \caption{Experimental response of the LQG controller with $\alpha$-integrator and no external perturbation.}
+    \label{fig:lqg_integrator_exp}
+\end{figure}
+
+\par As shown in Figure \ref{fig:lqg_integrator_exp}, the controller succeeds in keeping the mean 
+position of the system around the origin, confirming that the arm no longer drifts to a non-zero 
+equilibrium point. Nevertheless, the response still exhibits a visible oscillatory regime 
+in both $\alpha$ and $\beta$, together with a periodic control action. 
+This indicates that the integral action successfully removes the steady-state drift, but does not 
+by itself solve the oscillatory behaviour caused by the actuator nonlinearity, namely the motor 
+deadzone.
+
+\subsubsection{Experimental Validation under Disturbance}
+
+\par A final experimental test was then carried out with an external perturbation, in order to 
+validate on the real setup the disturbance-rejection capability previously observed in simulation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Body/Images/lqg_integrator_perturb.pdf}
+    \caption{Experimental response of the LQG controller with $\alpha$-integrator under external perturbation.}
+    \label{fig:lqg_integrator_perturb_exp}
+\end{figure}
+
+\par The results in Figure \ref{fig:lqg_integrator_perturb_exp} show that the perturbation causes 
+an initial large deviation, especially in $\alpha$, but the controller is able to drive the 
+system back toward zero mean afterwards. This experimental result is particularly 
+important because it confirms that the benefit of the added integrator is not limited to the 
+simulation environment. Even in the real setup, where actuator nonlinearities and 
+unmodelled effects are present, the controller no longer allows a persistent 
+offset in $\alpha$ after a disturbance.
+
+\par Overall, both the simulation and experimental results validate the introduction 
+of the $\alpha$-integrator as an effective solution to the steady-state drift problem. 
+However, the persistent oscillatory behaviour observed in the real system shows that integral 
+action alone is not sufficient to guarantee a smooth regulation of the arm angle. 
+This motivates the introduction of an additional deadzone compensator, discussed in the next 
+subsection.
+
 
 \subsection{LQG Integrator + Deadzone Compensator}
