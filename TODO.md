@@ -5,7 +5,7 @@ Theory:
 - [X] Observabilidade
 - [X] Diagramas de Bode
 - [X] Formulação do LQE e LQG
-- [ ] Explicar como tunamos os ganhos do regulador para a primeira sessão (SIM)
+- [X] Explicar como tunamos os ganhos do regulador para a primeira sessão (SIM)
 
 Lab Work:
 **Parte 1 - Pré-integrador**:
