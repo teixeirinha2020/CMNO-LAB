@@ -157,6 +157,15 @@ disp(L)
 x0 = [0.1 0 0 0 0]';
 D = zeros(2,1);
 
+G = eye(size(A));
+Qe = eye(size(A))*10;
+Re = eye(2);
+L = lqe(A, G, C, Qe, Re);
+
+Qr = diag([10,0,1,0,0]);
+Rr = 0.1;
+K = lqr(A, B, Qr, Rr);
+
 T = 5;
 out = sim("Q8_SIM.slx", T);
 
@@ -180,9 +189,125 @@ legend({'u'}, 'Location','best')
 grid on
 exportgraphics(gcf, 'Q8_voltage.pdf', 'ContentType', 'vector');
 
+%% Q9
+x0 = [0.1 0 0 0 0]';
+D = zeros(2,1);
+
+G = eye(size(A));
+Qe = eye(size(A))*10;
+Re = eye(2);
+L = lqe(A, G, C, Qe, Re);
+
+Qr_vec_alpha =  [1 10 100 500];
+Qr_vec_beta = [1 10 100 500];
+Rr_vec = [1 0.1 0.01 0.001];
+
+T = 5;
+Qr_vec_alpha = [1 10 100 500 1000];
+T = 5;
+
+figure(1); clf;
+tlo = tiledlayout(2,1);
+
+ax1 = nexttile(tlo); hold(ax1, 'on'); grid(ax1, 'on');
+ax2 = nexttile(tlo); hold(ax2, 'on'); grid(ax2, 'on');
+
+for i = 1:length(Qr_vec_alpha)
+    Qr = diag([Qr_vec_alpha(i), 0, 1, 0, 0]);
+    Rr = 0.1;
+    K = lqr(A, B, Qr, Rr);
+    
+    out = sim("Q8_SIM.slx", T);
+    
+    plot(ax1, out.y.Time, out.y.Data(:,1), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\alpha) = ', num2str(Qr_vec_alpha(i))]);
+
+    plot(ax2, out.y.Time, out.y.Data(:,2), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\alpha) = ', num2str(Qr_vec_alpha(i))]);
+end
+
+title(ax1, 'Controlled system output (\alpha)')
+ylabel(ax1, 'Angle [rad]')
+xlabel(ax1, 'Time [s]')
+legend(ax1, 'show', 'Location', 'northeast')
+
+title(ax2, 'Controlled system output (\beta)')
+ylabel(ax2, 'Angle [rad]')
+xlabel(ax2, 'Time [s]')
+legend(ax2, 'show', 'Location', 'northeast')
+
+exportgraphics(gcf, 'Q9_Qr_alpha.pdf', 'ContentType', 'vector');
+
+
+figure(2); clf;
+tlo = tiledlayout(2,1);
+
+ax1 = nexttile(tlo); hold(ax1, 'on'); grid(ax1, 'on');
+ax2 = nexttile(tlo); hold(ax2, 'on'); grid(ax2, 'on');
+
+for i = 1:length(Qr_vec_beta)
+    Qr = diag([10, 0, Qr_vec_beta(i), 0, 0]);
+    Rr = 0.1;
+    K = lqr(A, B, Qr, Rr);
+    
+    out = sim("Q8_SIM.slx", T);
+    
+    plot(ax1, out.y.Time, out.y.Data(:,1), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\beta) = ', num2str(Qr_vec_beta(i))]);
+
+    plot(ax2, out.y.Time, out.y.Data(:,2), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\beta) = ', num2str(Qr_vec_beta(i))]);
+end
+
+title(ax1, 'Controlled system output (\alpha)')
+ylabel(ax1, 'Angle [rad]')
+xlabel(ax1, 'Time [s]')
+legend(ax1, 'show', 'Location', 'northeast')
+
+title(ax2, 'Controlled system output (\beta)')
+ylabel(ax2, 'Angle [rad]')
+xlabel(ax2, 'Time [s]')
+legend(ax2, 'show', 'Location', 'northeast')
+
+exportgraphics(gcf, 'Q9_Qr_beta.pdf', 'ContentType', 'vector');
+
+
+figure(3); clf;
+tlo = tiledlayout(2,1);
+
+ax1 = nexttile(tlo); hold(ax1, 'on'); grid(ax1, 'on');
+ax2 = nexttile(tlo); hold(ax2, 'on'); grid(ax2, 'on');
+
+for i = 1:length(Rr_vec)
+    Qr = diag([10, 0, 1, 0, 0]);
+    Rr = Rr_vec(i);
+    K = lqr(A, B, Qr, Rr);
+    
+    out = sim("Q8_SIM.slx", T);
+    
+    plot(ax1, out.y.Time, out.y.Data(:,1), 'LineWidth', 0.8, ...
+        'DisplayName', ['Rr = ', num2str(Rr_vec(i))]);
+
+    plot(ax2, out.y.Time, out.y.Data(:,2), 'LineWidth', 0.8, ...
+        'DisplayName', ['Rr = ', num2str(Rr_vec(i))]);
+end
+
+title(ax1, 'Controlled system output (\alpha)')
+ylabel(ax1, 'Angle [rad]')
+xlabel(ax1, 'Time [s]')
+legend(ax1, 'show', 'Location', 'northeast')
+
+title(ax2, 'Controlled system output (\beta)')
+ylabel(ax2, 'Angle [rad]')
+xlabel(ax2, 'Time [s]')
+legend(ax2, 'show', 'Location', 'northeast')
+
+exportgraphics(gcf, 'Q9_Rr.pdf', 'ContentType', 'vector');
+
+
 
 %% Q11
-% Q11.1 - Alpha Integrator
+% Q11 - Alpha Integrator (testing multiple different values for Qr integrator parameter)
 % Initial conditions
 alpha_init = deg2rad(2);
 x0 = [alpha_init 0 0 0 0]';
@@ -196,9 +321,56 @@ B_aug = [B; 0];
 
 C_aug = [C zeros(2,1)];
 
+% Estimator parameters
+G = eye(size(A)); %
+Qe = eye(size(A))*10; %Variance of process errors
+Re = eye(2); %Variance of measurement errors
+L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
+
+L_aug = [L;
+        1 0];
+
+Qr_vec_alpha_int = [1 10 20 50];
+
+figure(4); clf;
+tlo = tiledlayout(2,1);
+
+ax1 = nexttile(tlo); hold(ax1, 'on'); grid(ax1, 'on');
+ax2 = nexttile(tlo); hold(ax2, 'on'); grid(ax2, 'on');
+
+T = 10;
+
+for i = 1:length(Qr_vec_alpha_int)
+    Qr = diag([10, 0, 1, 0, 0, Qr_vec_alpha_int(i)]);
+    Rr = 0.1;
+    K_aug = lqr(A_aug, B_aug, Qr, Rr);
+    
+    out = sim("Q11_SIM.slx", T);
+    
+    plot(ax1, out.y.Time, out.y.Data(:,1), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\alpha int.) = ', num2str(Qr_vec_alpha_int(i))]);
+
+    plot(ax2, out.y.Time, out.y.Data(:,2), 'LineWidth', 0.8, ...
+        'DisplayName', ['Qr(\alpha int.) = ', num2str(Qr_vec_alpha_int(i))]);
+end
+
+title(ax1, 'Controlled system output (\alpha)')
+ylabel(ax1, 'Angle [rad]')
+xlabel(ax1, 'Time [s]')
+legend(ax1, 'show', 'Location', 'northeast')
+
+title(ax2, 'Controlled system output (\beta)')
+ylabel(ax2, 'Angle [rad]')
+xlabel(ax2, 'Time [s]')
+legend(ax2, 'show', 'Location', 'northeast')
+
+exportgraphics(gcf, 'Q11_Qr_alpha_int.pdf', 'ContentType', 'vector');
+
+
+% Q11.1 - Alpha Integrator with constant perturbation
 % Regulator parameters
 Qr = diag([100,0,10,0,0,15]); %Weight Matrix for x
-Rr = 0.01; %Weight for the input variable
+Rr = 0.1; %Weight for the input variable
 K_aug = lqr(A_aug, B_aug, Qr, Rr); %Calculate feedback gain
 
 % Estimator parameters
@@ -210,7 +382,7 @@ L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
 L_aug = [L;
         1 0];
 
-T = 20;
+T = 15;
 out = sim("Q11_1_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
@@ -218,7 +390,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
-title('Controlled system output (w/ \alpha integrator)')
+title('Controlled system output - With \alpha integrator')
 xlabel('Time [s]')
 ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
@@ -227,7 +399,7 @@ grid on
 % Plot control input u (1 signal)
 nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input - With \alpha integrator)')
+title('Controlled system input - With \alpha integrator')
 xlabel('Time [s]')
 ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
@@ -320,7 +492,7 @@ grid on
 % Plot control input u (1 signal)
 nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input - No dead zone compensator')
+title('Final controlled system input - No dead zone compensator')
 xlabel('Time [s]')
 ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
@@ -336,7 +508,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
-title('Controlled system output - With dead zone compensator')
+title('Fianl controlled system output - With dead zone compensator')
 xlabel('Time [s]')
 ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
@@ -345,7 +517,7 @@ grid on
 % Plot control input u (1 signal)
 nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input - With dead zone compensator')
+title('Final controlled system input - With dead zone compensator')
 xlabel('Time [s]')
 ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
@@ -372,7 +544,7 @@ grid on
 % Plot control input u (1 signal)
 nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input - With sensors model')
+title('Final controlled system input - With sensors model')
 xlabel('Time [s]')
 ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
