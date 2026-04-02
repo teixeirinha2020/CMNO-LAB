@@ -324,3 +324,47 @@ subsection.
 
 
 \subsection{LQG Integrator + Deadzone Compensator}
+\section*{Motor Deadzone Characterization and Compensation}
+
+\par To quantify the motor deadzone, a voltage ramp was applied to the actuator to identify the 
+specific threshold required to initiate motion. Experimental results yielded a deadzone half-width 
+of $\pm0.34$ [V]. It is noted that preliminary measurements indicated a half-width of approximately $\pm0.20$ [V]; 
+however, these initial data points were not formally recorded. It is critical to acknowledge that this parameter is 
+subject to stochastic variations influenced by environmental factors, such as operating temperature. For the subsequent
+ simulations and the design of the deadzone compensator, the value of $\pm0.20$ [V] was adopted.
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/Calculo_Deadzone-sentido-2.pdf}
+    \caption{Motor deadzone measurement}
+    \label{fig:motor deadzone}
+\end{figure}
+
+\par The motor was modeled within the Simulink environment as a first-order system with a time constant $\tau = 0.01$ [s]. 
+The model incorporates several non-linearities and constraints, including a voltage input saturation of $\pm5$ [V], output angular 
+constraints of $\pm45^\circ$ for $\alpha$ and $\pm15^\circ$ for $\beta$, and a deadzone half-width of $\pm0.20$ [V]. A simulation 
+was performed including the implemented $\alpha$ integrator to evaluate the uncompensated system response prior to the integration 
+of the deadzone compensator. The resulting trajectory is illustrated below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/final_no_deadzone.pdf}
+    \caption{Controlled system feedback}
+    \label{fig:no_compensator}
+\end{figure}
+
+\par A deadzone compensation algorithm was developed to mitigate these nonlinear effects. The control logic determines
+ the polarity of the input voltage, $u$, and applies an instantaneous offset of $+0.20$ [V] or $-0.20$ [V], respectively. 
+ This effectively forces the control signal to bypass the deadzone region. This logic was realized via a \texttt{MATLAB Function} 
+ block and integrated into the primary Simulink diagram. The results are present in the following plot:
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/final_deadzone.pdf}
+    \caption{Controlled system feedback with deadzone compensator}
+    \label{fig:with_compensator}
+\end{figure}
+
+\par Following the implementation of the compensator, further simulations were conducted. The results demonstrate that 
+the angle signals exhibit a reduced amplitude and the characteristic ``voltage jumping'' is clearly visible in the input signal.
+ Overall, the deadzone is effectively bypassed, leading to superior control authority and enhanced system performance.

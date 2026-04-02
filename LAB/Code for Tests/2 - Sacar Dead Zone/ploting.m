@@ -49,6 +49,7 @@ ax.YColor = 'k';
 % Formatação Geral
 grid on; 
 xlim([0, 2]); % Focar apenas no arranque
+ylim([-2, 2]);
 xlabel('Tempo (s)'); 
 
 % Truque para o exportgraphics não cortar o topo do título:
@@ -63,4 +64,4 @@ else
 end
 
 %% 4. Guardar
-exportgraphics(fig, 'Calculo_Deadzone-sentido-2.png', 'Resolution', 300);
+exportgraphics(fig, 'Calculo_Deadzone-sentido-2.pdf', 'Resolution', 1000);
