@@ -342,7 +342,7 @@ subject to stochastic variations influenced by environmental factors, such as op
 The model incorporates several non-linearities and constraints, including a voltage input saturation of $\pm5$ [V], output angular 
 constraints of $\pm45^\circ$ for $\alpha$ and $\pm15^\circ$ for $\beta$, and a deadzone half-width of $\pm0.20$ [V]. A simulation 
 was performed including the implemented $\alpha$ integrator to evaluate the uncompensated system response prior to the integration 
-of the deadzone compensator. The resulting trajectory is illustrated below:
+of the deadzone compensator. The values used for the regulator were $Q_r = diag([100,0,1,0,0,15])$ and $Rr = 0.01$; the resulting trajectory is illustrated below:
 
 \begin{figure}[H]
     \centering
@@ -366,3 +366,11 @@ of the deadzone compensator. The resulting trajectory is illustrated below:
 \par Following the implementation of the compensator, further simulations were conducted. The results demonstrate that 
 the angle signals exhibit a reduced amplitude and the characteristic ``voltage jumping'' is clearly visible in the input signal.
  Overall, the deadzone is effectively bypassed, leading to superior control authority and enhanced system performance.
+
+ 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Body/Images/1teste.pdf}
+    \caption{Controlled system feedback}
+    \label{fig:no_compensator}
+\end{figure}
