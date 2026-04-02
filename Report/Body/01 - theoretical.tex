@@ -37,16 +37,96 @@ A =
     0 & -232.0252 & 0 & 0 & -755.425
 \end{bmatrix}
 \]
+\[
+B = 
+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \\ 333.3 \end{bmatrix}, \quad
+C = 
+\begin{bmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \end{bmatrix}, \quad
+D = 
+\begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\]
+\subsection{State-Space Analysis}
 
-
-\subsection{Space-State Analysis}
-\par In this section we aim to study the previously formalized space-state, studying it in terms of poles, controlability, observability and frequency response. 
+\par In this section, we analyze the previously formulated state-space model in terms of system poles, controllability, observability, and frequency response.
+\\
 \subsubsection{Q1 - System Poles}
-\par
-\subsubsection{Q2 - Controlabillity}
-\par
+
+\par The system poles are the eigenvalues of the dynamics matrix $A$. Using MATLAB's \texttt{eig()} function, the following poles were obtained:
+
+\begin{equation}
+\text{eig}(A) = 
+\begin{bmatrix}
+0\\
+-737.3184\\
+-19.3673\\
+-5.7612\\
+6.9974
+\end{bmatrix}
+\end{equation}
+
+\par Analysis of the poles shows that the system has three stable modes: two correspond to the mechanical damping of the pendulum, $\lambda_3 = -19.3673$ and $\lambda_4 = -5.7612$, and a very fast mode associated with the motor current, $\lambda_2 = -737.3184$. Additionally, the state $\alpha$ generates a pole at the origin, $\lambda_1 = 0$, due to being an integrator. This implies that after a perturbation, $\alpha$ will accumulate error over time without diverging or converging, reflecting the fact that the arm rotates without friction and does not naturally settle to an equilibrium. 
+
+\par The single unstable mode, $\lambda_5 = 6.9974$, is related to the vertical pendulum position, which is the primary state we aim to control.
+\\
+\subsubsection{Q2 - Controllability}
+
+\par A system is controllable if it is possible to transition from any state $x_1$ to another arbitrary state $x_2$ by applying an input $u(t)$ over a finite time interval. Knowing whether the system is controllable is crucial for understanding the limitations of the controller.
+
+\par The controllability matrix is defined as:
+\begin{equation}
+\mathcal{C} = \begin{bmatrix} B & AB & A^2B & \cdots & A^{n-1}B \end{bmatrix},
+\end{equation}
+where $n$ is the number of states. Using MATLAB's \texttt{ctrb(A,B)} function, we obtained:
+
+\[
+\mathcal{C} =
+\begin{bmatrix}
+0 & 0 & 1.918 \times 10^{4} & -1.449 \times 10^{7} & 1.069 \times 10^{10} \\
+0 & 1.918 \times 10^{4} & -1.449 \times 10^{7} & 1.069 \times 10^{10} & -7.881 \times 10^{12} \\
+0 & 0 & 1.915 \times 10^{4} & -1.446 \times 10^{7} & 1.067 \times 10^{10} \\
+0 & 1.915 \times 10^{4} & -1.446 \times 10^{7} & 1.067 \times 10^{10} & -7.869 \times 10^{12} \\
+3.333 \times 10^{2} & -2.518 \times 10^{5} & 1.858 \times 10^{8} & -1.370 \times 10^{11} & 1.010 \times 10^{14}
+\end{bmatrix}
+\]
+
+\par The system is controllable if the rank of the controllability matrix equals the number of states. Using MATLAB's \texttt{rank()} function, we obtained $\text{rank}(\mathcal{C}) = 5$, which equals the number of states. Therefore, the system is controllable.
+\\
 \subsubsection{Q3 - Observability}
-\par
+
+\par A system is observable if, for any initial state $x(0)$, knowledge of the input $u(t)$ and output $y(t)$ over a finite time interval uniquely determines $x(0)$. Although the system is controllable, implementing a state-feedback controller requires knowledge of the full state\footnote{State-feedback control requires knowledge of the full state since the control law $u(t) = -Kx(t)$ explicitly depends on the state vector. In this project, an estimator was designed to reconstruct the state, resulting in the control law $u(t) = -K\hat{x}(t)$. State estimation is only possible if the system is observable, making observability a prerequisite for implementing state-feedback control when the state is not directly measurable.}. Since the state is not directly measurable, it must be reconstructed from the outputs, which is only possible if the system is observable.
+
+\par The observability matrix is defined as:
+\begin{equation}
+\mathcal{O} = 
+\begin{bmatrix}
+C \\
+CA \\
+CA^2 \\
+\vdots \\
+CA^{n-1}
+\end{bmatrix}
+\end{equation}
+
+\par Using MATLAB's \texttt{obsv()} function, the observability matrix was calculated as:
+
+\begin{equation}
+\mathcal{O} =
+\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & -1.740 \times 10^{-2} & 2.079 \times 10^{1} & -2.316 \times 10^{-3} & 5.753 \times 10^{1} \\
+0 & -1.738 \times 10^{-2} & 6.383 \times 10^{1} & -7.114 \times 10^{-3} & 5.744 \times 10^{1} \\
+0 & -1.335 \times 10^{4} & -5.096 \times 10^{-1} & 2.079 \times 10^{1} & -4.346 \times 10^{4} \\
+0 & -1.333 \times 10^{4} & -8.152 \times 10^{-1} & 6.383 \times 10^{1} & -4.339 \times 10^{4} \\
+0 & 1.008 \times 10^{7} & -2.762 \times 10^{5} & 3.027 \times 10^{1} & 3.207 \times 10^{7} \\
+0 & 1.007 \times 10^{7} & -2.729 \times 10^{5} & 2.960 \times 10^{1} & 3.202 \times 10^{7}
+\end{bmatrix}
+\end{equation}
+
+\par Applying the \texttt{rank()} function shows that $\text{rank}(\mathcal{O}) = 5$, which equals the number of states. Therefore, the system is observable.
+\\
 \subsubsection{Q4 - Bode Plots}
 \par
 \subsection{LQR Controller Design}

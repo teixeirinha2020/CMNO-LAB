@@ -391,10 +391,27 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx10.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx7.tfm
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx5.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\tex\latex\lm\t1lmtt.fd
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmtt10.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr8.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr6.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi8.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi6.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy8.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy6.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx8.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmbx6.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr6.tfm
 INPUT .\Body\02 - laboratory.tex
 INPUT .\Body\02 - laboratory.tex
 INPUT Body\02 - laboratory.tex
-INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT .\Body\03 - conclusion.tex
 INPUT .\Body\03 - conclusion.tex
 INPUT Body\03 - conclusion.tex
@@ -428,13 +445,25 @@ INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi10.
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr12.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr6.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr6.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr7.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr8.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmri10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy10.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
 INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy7.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmsy8.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt10.pfb
+INPUT C:\Users\lucas\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmtt10.pfb
