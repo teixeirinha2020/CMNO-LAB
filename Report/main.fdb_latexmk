@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 1775143962.18863 "main.bcf" "main.bbl" "main" 1775143970.34249 0
-  "main.bcf" 1775143970 108500 b4c1578c0f8452bc54d350498844cbd7 "pdflatex"
+["biber main"] 1775143962.18863 "main.bcf" "main.bbl" "main" 1775147572.50642 0
+  "main.bcf" 1775147572 108500 b4c1578c0f8452bc54d350498844cbd7 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1775143968.98637 "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" "main.pdf" "main" 1775143970.34308 0
+["pdflatex"] 1775147571.18896 "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" "main.pdf" "main" 1775147572.507 0
   "Body/00 - Introduction.tex" 1775138228 2636 17bcf619cf161894626b0e362b2d82b4 ""
-  "Body/01 - theoretical.tex" 1775143958 7729 53463bc1648931d71374162e9672c45c ""
+  "Body/01 - theoretical.tex" 1775147570 8549 fa1ee5a59c953c270571ac6cf664e06e ""
   "Body/02 - laboratory.tex" 1775143951 2361 b82fc8232202c2171785d47adf4cbba2 ""
   "Body/03 - conclusion.tex" 1775081789 34 07e671d9077e20a7c0bcd9e1722fcdd4 ""
   "Body/04 - Anexos.tex" 1775137297 33 a13cc200b69afb7596c7ecfedf5e34fa ""
@@ -97,6 +97,7 @@
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb" 1256929440 121065 ba8daf2228d9e511988917831f1e22e9 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb" 1256929440 112593 fda2373ba4420af33949610de4c28fe8 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb" 1256929440 27863 09ce3735688ffde955e72da27c95b61a ""
+  "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb" 1256929440 28109 6d61305ed3d0eb794ebe36f15cf44aa0 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb" 1256929440 27941 d1f5d03f61a46c3fcc3a2ba904ddda52 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb" 1256929440 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb" 1256929440 113227 d3d1adc024746ff57b20efba82c6d365 ""
@@ -204,16 +205,16 @@
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/lucas/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "Cover/cover.aux" 1775143969 4048 4ece081c3a127d7c495047347a22339f "pdflatex"
+  "Cover/cover.aux" 1775147572 4048 4ece081c3a127d7c495047347a22339f "pdflatex"
   "Cover/cover.tex" 1775082513 1839 50acc596a82b153e7a60961fa58eff54 ""
   "Cover/logoist.png" 1774996761 94452 34951721ae5adf2ae22b78080f3d81ce ""
   "c:/Users/lucas/Documents/GitHub/CMNO-LAB/Report/main.tex" 1775143957 3004 8840f4348baab44c591b2d2c45140a82 ""
-  "main.aux" 1775143970 4250 cf3d0743974a7fc1ebf606151bb1b7c6 "pdflatex"
+  "main.aux" 1775147572 4495 b0c478b602e867c3e760c67ea6d5c612 "pdflatex"
   "main.bbl" 1775143967 486 76d65a242ec496c9b4361af646ff12cb "biber main"
-  "main.out" 1775143970 3755 1b7d997314a2994f1053ae756488bcbd "pdflatex"
-  "main.run.xml" 1775143970 2315 e0df2825d80e5ab858bd447846abb6f3 "pdflatex"
+  "main.out" 1775147572 3755 1b7d997314a2994f1053ae756488bcbd "pdflatex"
+  "main.run.xml" 1775147572 2315 e0df2825d80e5ab858bd447846abb6f3 "pdflatex"
   "main.tex" 1775143957 3004 8840f4348baab44c591b2d2c45140a82 ""
-  "main.toc" 1775143970 2131 bf9a69da3b89614d11f0e33cf79af412 "pdflatex"
+  "main.toc" 1775147572 2131 bf9a69da3b89614d11f0e33cf79af412 "pdflatex"
   (generated)
   "Cover/cover.aux"
   "main.aux"

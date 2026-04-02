@@ -44,6 +44,9 @@ disp(r_o);
 % finite sequence of measurements.
 
 %% Q4 - Bode Plots of the open-loop system
+
+[num, den] = ss2tf(A, B, C, D);
+
 w = logspace(-1, 3, 1000);
 sys = ss(A, B, C, D);
 

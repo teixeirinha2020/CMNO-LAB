@@ -8,7 +8,7 @@ Theory:
 
 Lab Work:
 **Parte 1 - Pré-integrador**:
-- [ ] Explicar como tunamos os ganhos do estimador para a primeira sessão (SIM)
+- [ ] Explicar como tunamos os ganhos do estimador para a primeira sessão (metemos o que estava no enunciado)
 - [ ] Explicar como tunamos os ganhos do regulador para a primeira sessão (SIM)
 - [ ] Apresentar gráficos para diferentes valores de Q (SIM)
 - [ ] Mostrar gráficos experimentais que comprovem que os ganhos que escolhemos fazem sentido (EXP)
