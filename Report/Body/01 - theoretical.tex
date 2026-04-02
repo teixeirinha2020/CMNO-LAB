@@ -138,46 +138,61 @@ CA^{n-1}
 \par Applying the \texttt{rank()} function shows that $\text{rank}(\mathcal{O}) = 5$, which equals the number of states. Therefore, the system is observable.
 \\
 \subsubsection{Q4 - Bode Plots}
-\par The evaluate the frequency response of the system, the transfer functions of $\alpha$ and $\beta$ relative to the input $u$ were determined:
+\par The evaluate the frequency response of the system, the transfer functions of $\alpha$ and $\beta$ relative to the input $u$ were determined, resorting to the function \texttt{ss2tf()}:
+\\
 \begin{equation}
-    \frac{\alpha}{u} (s) = \frac{
+    \frac{\alpha(s)}{u(s)} = \frac{
 1.92\times 10^{4}\, s^2 + 92.07\, s - 8.26\times 10^{5}
 }{
 s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\times 10^{5}\, s
 }
 \end{equation}
+\\
+\begin{equation}
+    \frac{\beta(s)}{u(s)} = \frac{
+0.1915\,s^2
+}{
+s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\times 10^{5}\, s
+}
+\end{equation}
+\par With the above transfer functions, we generated the bode plots the caracterize their frequency response.
 
-\begin{equation}
-    \frac{\beta}{u} (s) = \frac{
-1.92\times 10^{4}\, s^2 + 92.07\, s - 8.26\times 10^{5}
-}{
-s^5 + 755.45\, s^4 + 1.33\times 10^{4}\, s^3 - 4.82\times 10^{4}\, s^2 - 5.76\times 10^{5}\, s
-}
-\end{equation}
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/bode_plot_alpha.pdf}
-        \caption{Bode plot for $\alpha$}
+        \caption{Bode plot for $\frac{\alpha(s)}{u(s)}$}
         \label{fig:bode_alpha}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Body/Images/bode_plot_beta.pdf}
-        \caption{Bode plot for $\beta$}
+        \caption{Bode plot for $\frac{\beta(s)}{u(s)}$}
         \label{fig:bode_beta}
     \end{subfigure}
     \caption{Open-loop Bode plots of the system evaluating both outputs.}
     \label{fig:bode_plots_combined}
 \end{figure}
 \newpage
+\par The frequency response of $\frac{\alpha(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4\, dB$ and a large phase margin $P_m = 83.3^{\circ}$. For frequencies below 1 rad/s, $\frac{\alpha(s)}{u(s)}$ amplifies inputs, whereas for higher frequencies this transfer functions attenuates inputs. The transfer function $\frac{\beta(s)}{u(s)}$ is characterized by a large gain margin, $G_m = 54.4\, dB$, and an infinite phase margin, because the gain never reaches zero.  
 \subsection{LQR Controller Design}
-\par \textbf{Q5}
+\par The initial approach to controlling the system involved designing a simple Linear Quadratic Regulator, implementing the control law $u(t) = -K x(t)$. The associated space-state model is $\dot x = A - BK$ and since the pair (A, B) is controllable, it is possible to place the poles of the system in any arbitrary position. To calculate the optimal gain, K, it is necessary to define a cost function J:
+
+\begin{equation}
+    J = \frac 1 2 \int_{0}^{\infty} \mathbf{x}^TQ\mathbf{x} + \mathbf{u}^T R \mathbf{u} \ dt
+\end{equation}
+
+\par Where $Q_r$ is the process covariance matrix and $R_r$ is the measurement covariance matrix. The ratio of $Q_r$ to $R_r$ indicates how much the system trust the measurements as opposed to the model predictions. Generally, higher values in $Q_r$ paired with low values of $R_r$ indicate that the system trusts measurements more. Based on the associated space-state model, we designed a preliminar simulink to simulate the model.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Body/Images/LQR.png}
+    \caption{Simulink of the LQR of the system}
+    \label{fig:bode}
+\end{figure}
 
 \subsection{State Estimator Design - LQE}
-\par \textbf{Q6, Q7}
-
+\par Because the observed output is only $\alpha$ and $\beta$, it is necessary to design an estimator that computes the entire state vector from the observed states. Since the system is observable, it is guaranteed that the state vector can always be reconstructed by observing state $\alpha$ and $\beta$ over an interval of time. 
 \subsection{Baseline LQG Simulation}
 \par \textbf{Q8}

@@ -4,7 +4,7 @@ Theory:
 - [X] Controlabilidade
 - [X] Observabilidade
 - [X] Diagramas de Bode
-- [ ] Formulação do LQE e LQG
+- [X] Formulação do LQE e LQG
 - [ ] Explicar como tunamos os ganhos do regulador para a primeira sessão (SIM)
 
 Lab Work:

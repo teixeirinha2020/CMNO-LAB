@@ -25,7 +25,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data.t, data.y.signals.values * rad2deg)
-title("100 1 15")
+title("Qr = diag([100 0 1 0 15]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -45,7 +45,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data1.t, data1.y.signals.values * rad2deg)
-title("10 100 15")
+title("Qr = diag([10 0 100 0 15]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -65,7 +65,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data2.t, data2.y.signals.values * rad2deg)
-title("10 100 20")
+title("Qr = diag([10 0 100 0 20]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -85,7 +85,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data3.t, data3.y.signals.values * rad2deg)
-title("100 10 20")
+title("Qr = diag([100 0 10 0 20]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -105,7 +105,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data4.t, data4.y.signals.values * rad2deg)
-title("deadzone 1.8")
+title("Qr = diag([10 0 100 0 15]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -125,7 +125,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data5.t, data5.y.signals.values * rad2deg)
-title("10 10 15")
+title("Qr = diag([10 0 10 0 15]), Rr = 0.01, +-0.20 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -145,7 +145,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data6.t, data6.y.signals.values * rad2deg)
-title("100 10 10")
+title("Qr = diag([100 0 10 0 10]), Rr = 0.01, +-0.22 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -165,7 +165,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data7.t, data7.y.signals.values * rad2deg)
-title("100 10 5")
+title("Qr = diag([100 0 10 0 5]), Rr = 0.01, +-0.22 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -185,7 +185,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data8.t, data8.y.signals.values * rad2deg)
-title("100 10 5 deadzone 1.5")
+title("Qr = diag([100 0 10 0 5]), Rr = 0.01, +-0.15 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -205,7 +205,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data9.t, data9.y.signals.values * rad2deg)
-title("100 10 5 deadzone2.2")
+title("Qr = diag([100 0 10 0 5]), Rr = 0.01, +-0.22 Comp. - With perturbation")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -225,7 +225,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data10.t, data10.y.signals.values * rad2deg)
-title("100 5 5 deadzone2.2")
+title("Qr = diag([100 0 5 0 5]), Rr = 0.01, +-0.22 Comp.")
 ylabel("Angle [deg]")
 xlim([10, 29])
 legend("\alpha", "\beta")
@@ -245,7 +245,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data11.t, data11.y.signals.values * rad2deg)
-title("100 10 50 deadzone2.2 perturb")
+title("Qr = diag([100 0 10 0 50]), Rr = 0.01, +-0.22 Comp. - With perturbation")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -265,7 +265,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data12.t, data12.y.signals.values * rad2deg)
-title("100 30 15 deadzone2.2 perturb")
+title("Qr = diag([100 0 30 0 15]), Rr = 0.01, +-0.22 Comp. - With perturbation")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
@@ -285,7 +285,7 @@ figure
 tiledlayout(2,1)
 nexttile
 plot(data13.t, data13.y.signals.values * rad2deg)
-title("100 1 15 deadzone2.2 perturb")
+title("Qr = diag([100 0 1 0 15]), Rr = 0.01, +-0.22 Comp. - With perturbation")
 ylabel("Angle [deg]")
 xlim([10, 30])
 legend("\alpha", "\beta")
