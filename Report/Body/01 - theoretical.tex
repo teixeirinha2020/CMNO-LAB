@@ -1,7 +1,7 @@
 \newpage
 \section{Theoretical Analysis and Control Design}
 
-\subsection{Space-State Formalization}
+\subsection{Space-State Formulation}
 
 \par A dinâmica não-linear do distema implica que este necessite de ser linearizado em torno de um ponto de equilíbrio, que
 dado o objetivo deste relatório, é o ponto de equilíbrio instável onde o pêndulo se encontra na posição vertical para cima. 
@@ -128,7 +128,26 @@ CA^{n-1}
 \par Applying the \texttt{rank()} function shows that $\text{rank}(\mathcal{O}) = 5$, which equals the number of states. Therefore, the system is observable.
 \\
 \subsubsection{Q4 - Bode Plots}
-\par
+\par The evaluate the frequency response of the system, bode plots were generated. 
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/bode_plot_alpha.pdf}
+        \caption{Bode plot for $\alpha$}
+        \label{fig:bode_alpha}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Body/Images/bode_plot_beta.pdf}
+        \caption{Bode plot for $\beta$}
+        \label{fig:bode_beta}
+    \end{subfigure}
+    \caption{Open-loop Bode plots of the system evaluating both outputs.}
+    \label{fig:bode_plots_combined}
+\end{figure}
+\newpage
 \subsection{LQR Controller Design}
 \par \textbf{Q5}
 

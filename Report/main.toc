@@ -3,19 +3,19 @@
 \contentsline {subsection}{\numberline {\mbox {I-A}}Context and Objectives}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {\mbox {I-B}}System Description}{2}{subsection.1.2}%
 \contentsline {section}{\numberline {II}Theoretical Analysis and Control Design}{3}{section.2}%
-\contentsline {subsection}{\numberline {\mbox {II-A}}Space-State Formalization}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {\mbox {II-A}}Space-State Formulation}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {\mbox {II-B}}State-Space Analysis}{3}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {\mbox {II-B}1}Q1 - System Poles}{3}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {\mbox {II-B}2}Q2 - Controllability}{3}{subsubsection.2.2.2}%
 \contentsline {subsubsection}{\numberline {\mbox {II-B}3}Q3 - Observability}{4}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {\mbox {II-B}4}Q4 - Bode Plots}{4}{subsubsection.2.2.4}%
-\contentsline {subsection}{\numberline {\mbox {II-C}}LQR Controller Design}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {\mbox {II-D}}State Estimator Design - LQE}{4}{subsection.2.4}%
-\contentsline {subsection}{\numberline {\mbox {II-E}}Baseline LQG Simulation}{4}{subsection.2.5}%
-\contentsline {section}{\numberline {III}Laboratory Work and Experimental Results}{5}{section.3}%
-\contentsline {subsection}{\numberline {\mbox {III-A}}Realistic System Simulation}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {\mbox {III-B}}Initial Controller Testing on Physical Hardware}{5}{subsection.3.2}%
-\contentsline {subsection}{\numberline {\mbox {III-C}}Compensation of Non-Linearities: Motor Deadzone and Steady-State Error}{5}{subsection.3.3}%
-\contentsline {subsection}{\numberline {\mbox {III-D}}Final Controller Tuning and Disturbance Rejection}{5}{subsection.3.4}%
-\contentsline {section}{\numberline {IV}Conclusion}{6}{section.4}%
-\contentsline {section}{\numberline {V}Anexos}{7}{section.5}%
+\contentsline {subsection}{\numberline {\mbox {II-C}}LQR Controller Design}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {\mbox {II-D}}State Estimator Design - LQE}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {\mbox {II-E}}Baseline LQG Simulation}{5}{subsection.2.5}%
+\contentsline {section}{\numberline {III}Laboratory Work and Experimental Results}{6}{section.3}%
+\contentsline {subsection}{\numberline {\mbox {III-A}}Realistic System Simulation}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Initial Controller Testing on Physical Hardware}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {\mbox {III-C}}Compensation of Non-Linearities: Motor Deadzone and Steady-State Error}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {\mbox {III-D}}Final Controller Tuning and Disturbance Rejection}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {IV}Conclusion}{7}{section.4}%
+\contentsline {section}{\numberline {V}Anexos}{8}{section.5}%

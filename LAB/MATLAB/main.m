@@ -43,16 +43,27 @@ disp(r_o);
 % observable. This means that we can reconstruct the initial state, x_0, from a
 % finite sequence of measurements.
 
-%% Q4 - Bode Plot of the open-loop system
-
+%% Q4 - Bode Plots of the open-loop system
 w = logspace(-1, 3, 1000);
 sys = ss(A, B, C, D);
-G = ss2tf(A, B, C, D);
- 
-% Matrix C has 2 rows, so we have 2 measurements
-bode(sys(1, 1), sys(2, 1), w) % Both measurements on the same plot
-legend('y_1','y_2')
-grid on
+
+% --- Figure 1: Alpha Output ---
+figure(1);
+margin(sys(1,1), w);
+grid on;
+title('Bode Diagram - $\alpha$', 'Interpreter', 'latex');
+exportgraphics(gcf, 'bode_plot_alpha.pdf', 'ContentType', 'vector');
+
+% --- Figure 2: Beta Output ---
+figure(2);
+margin(sys(2,1), w);
+grid on;
+title('Bode Diagram - $\beta$', 'Interpreter', 'latex');
+exportgraphics(gcf, 'bode_plot_beta.pdf', 'ContentType', 'vector');
+figure;
+pzmap(sys(1,1));
+grid on;
+title('Pole-Zero Map - $\alpha$', 'Interpreter', 'latex');
 
 %% Q5 - Regulator gain
 

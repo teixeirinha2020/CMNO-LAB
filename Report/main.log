@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.11.26)  2 APR 2026 12:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.11.26)  2 APR 2026 14:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -933,27 +933,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--130
 
  []
 
-) (Body/02 - laboratory.tex
+<Body/Images/bode_plot_alpha.pdf, id=147, 362.35374pt x 296.10625pt>
+File: Body/Images/bode_plot_alpha.pdf Graphic file (type pdf)
+<use Body/Images/bode_plot_alpha.pdf>
+Package pdftex.def Info: Body/Images/bode_plot_alpha.pdf  used on input line 136.
+(pdftex.def)             Requested size: 247.6778pt x 202.3978pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 137.
+<Body/Images/bode_plot_beta.pdf, id=148, 362.35374pt x 296.10625pt>
+File: Body/Images/bode_plot_beta.pdf Graphic file (type pdf)
+<use Body/Images/bode_plot_beta.pdf>
+Package pdftex.def Info: Body/Images/bode_plot_beta.pdf  used on input line 143.
+(pdftex.def)             Requested size: 247.6778pt x 202.3978pt.
 
-[4]) (Body/03 - conclusion.tex
 
-[5])
+[4]) (Body/02 - laboratory.tex
+
+[5 <./Body/Images/bode_plot_alpha.pdf> <./Body/Images/bode_plot_beta.pdf>]) (Body/03 - conclusion.tex
+
+[6])
 
 LaTeX Warning: Empty bibliography on input line 123.
 
 
 
-[6] (Body/04 - Anexos.tex
-<Body/Images/simulink.png, id=172, 993.7125pt x 509.65407pt>
-File: Body/Images/simulink.png Graphic file (type png)
-<use Body/Images/simulink.png>
-Package pdftex.def Info: Body/Images/simulink.png  used on input line 6.
-(pdftex.def)             Requested size: 516.0pt x 264.64836pt.
-)
+[7] (Body/04 - Anexos.tex)
 
-[7
+[8
 
- <./Body/Images/simulink.png>] 
+] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (main.aux (Cover/cover.aux))
  ***********
@@ -961,23 +969,23 @@ LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1FD781DCA2A0CA192F986DFA78E002DB;3902.
+(rerunfilecheck)             Checksum: 442B89279E8FCB39E6AE81584A976EB0;3892.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25879 strings out of 473682
- 501469 string characters out of 5719215
- 1302073 words of memory out of 5000000
- 48565 multiletter control sequences out of 15000+600000
- 784930 words of font info for 158 fonts, out of 8000000 for 9000
+ 25911 strings out of 473682
+ 502224 string characters out of 5719215
+ 1302266 words of memory out of 5000000
+ 48592 multiletter control sequences out of 15000+600000
+ 791888 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,81p,999b,1722s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on main.pdf (8 pages, 400512 bytes).
+<C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/lucas/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on main.pdf (9 pages, 464657 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 369 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 
