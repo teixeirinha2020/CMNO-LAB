@@ -10,14 +10,14 @@
 \contentsline {subsubsection}{\numberline {\mbox {II-B}3}Q3 - Observability}{4}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {\mbox {II-B}4}Q4 - Bode Plots}{4}{subsubsection.2.2.4}%
 \contentsline {subsection}{\numberline {\mbox {II-C}}LQR Controller Design}{5}{subsection.2.3}%
-\contentsline {subsection}{\numberline {\mbox {II-D}}State Estimator Design - LQE}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {\mbox {II-E}}Baseline LQG Simulation}{5}{subsection.2.5}%
-\contentsline {section}{\numberline {III}Laboratory Work and Experimental Results}{6}{section.3}%
-\contentsline {subsection}{\numberline {\mbox {III-A}}Initial Hardware Testing}{6}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {\mbox {III-A}1}LQE Validation}{6}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {\mbox {III-A}2}LQG Testing}{6}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {\mbox {III-A}3}Analysis and Problems}{6}{subsubsection.3.1.3}%
-\contentsline {subsection}{\numberline {\mbox {III-B}}Propused Solutions and Simulation}{6}{subsection.3.2}%
-\contentsline {subsection}{\numberline {\mbox {III-C}}Final Hardware Testing and Validation}{6}{subsection.3.3}%
-\contentsline {section}{\numberline {IV}Conclusion}{7}{section.4}%
-\contentsline {section}{\numberline {V}Anexos}{8}{section.5}%
+\contentsline {subsection}{\numberline {\mbox {II-D}}State Estimator Design - LQE}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {\mbox {II-E}}Baseline LQG Simulation}{6}{subsection.2.5}%
+\contentsline {section}{\numberline {III}Laboratory Work and Experimental Results}{7}{section.3}%
+\contentsline {subsection}{\numberline {\mbox {III-A}}Initial Hardware Testing}{7}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {\mbox {III-A}1}LQE Validation}{7}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {\mbox {III-A}2}LQG Testing}{7}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {\mbox {III-A}3}Analysis and Problems}{7}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {\mbox {III-B}}Propused Solutions and Simulation}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {\mbox {III-C}}Final Hardware Testing and Validation}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {IV}Conclusion}{8}{section.4}%
+\contentsline {section}{\numberline {V}Anexos}{9}{section.5}%
