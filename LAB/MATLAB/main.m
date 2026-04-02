@@ -88,15 +88,16 @@ out = sim("Q6_SIM", T);
 figure
 plot(out.x.Time, out.x.Data);
 title('State feedback test')
-xlabel('Time (s)')
-legend({'$\alpha$ (rad)', ...
-        '$\dot{\alpha}$ (rad/s)', ...
+xlabel('Time [s]')
+legend({'$\alpha$ [rad]', ...
+        '$\dot{\alpha}$ [rad/s]', ...
         '$\beta$ (rad)', ...
-        '$\dot{\beta}$ (rad/s)', ...
-        '$i$ (A)'}, ...
+        '$\dot{\beta}$ [rad/s]', ...
+        '$i$ [A]'}, ...
         'Interpreter','latex', ...
         'Location','best')
 grid on
+exportgraphics(gcf, 'Q6_states.pdf', 'ContentType', 'vector');
 
 
 %% Q7 - Gain Estimator 
@@ -142,26 +143,28 @@ disp(L)
 x0 = [0.1 0 0 0 0]';
 D = zeros(2,1);
 
-T = 4;
+T = 5;
 out = sim("Q8_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
 figure
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
 title('Controlled system output')
-xlabel('Time (s)')
-ylabel('Angle (rad)')
-legend({'\alpha (rad)','\beta (rad)'}, 'Location','best')
+xlabel('Time [s]')
+ylabel('Angle [rad]')
+legend({'\alpha [rad]','\beta [rad]'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'Q8_angles.pdf', 'ContentType', 'vector');
 
 % Plot control input u (1 signal)
 figure;
 plot(out.u.Time, out.u.Data)
 title('Controlled system input')
-xlabel('Time (s)')
-ylabel('Voltage (V)')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'Q8_voltage.pdf', 'ContentType', 'vector');
 
 
 %% Q11
@@ -193,26 +196,29 @@ L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
 L_aug = [L;
         1 0];
 
-T = 10;
+T = 20;
 out = sim("Q11_1_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
 figure
+tiledlayout(2,1)
+nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
 title('Controlled system output (w/ \alpha integrator)')
-xlabel('Time (s)')
-ylabel('Angle (deg)')
+xlabel('Time [s]')
+ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
 grid on
 
 % Plot control input u (1 signal)
-figure
+nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input (w/ \alpha integrator)')
-xlabel('Time (s)')
-ylabel('Voltage (V)')
+title('Controlled system input - With \alpha integrator)')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'Q11_alpha_integrator.pdf', 'ContentType', 'vector');
 
 % Q11.2 - Dead Zone Compensator
 dead_zone_half_width = 0.2; % Dead zone half-width
@@ -222,27 +228,32 @@ out = sim("Q11_2_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
 figure
+tiledlayout(2,1)
+nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
-title('Controlled system output (w/ \alpha integrator + dead zone compensator)')
-xlabel('Time (s)')
-ylabel('Angle (deg)')
+title('Controlled system output - With \alpha integrator & dead zone compensator')
+xlabel('Time [s]')
+ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
 grid on
 
 % Plot control input u (1 signal)
-figure
+nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input (w/ \alpha integrator + dead zone compensator)')
-xlabel('Time (s)')
-ylabel('Voltage (V)')
+title('Controlled system input - With \alpha integrator & dead zone compensator')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'Q11_alpha_integrator_deadzone.pdf', 'ContentType', 'vector');
 
 
-%% Final Simulation
+
+%% Final Simulations
+% Final 1 - No deadzone compensator
 % Initial conditions
-alpha_init = deg2rad(5);
-beta_init = deg2rad(1);
+alpha_init = deg2rad(2);
+beta_init = deg2rad(0.5);
 
 x0 = [alpha_init 0 beta_init 0 0]';
 D = zeros(2,1);
@@ -271,7 +282,7 @@ K_aug = lqr(A_aug, B_aug, Qr, Rr); %Calculate feedback gain
 
 % Estimator parameters
 G = eye(size(A)); %
-Qe = eye(size(A))*10; %Variance of process errors
+Qe = eye(size(A))*10-2; %Variance of process errors
 Re = eye(2)*(deg2rad(0.01)^2); %Variance of measurement errors
 L = lqe(A, G, C, Qe, Re); %Calculate estimator gains
 
@@ -279,43 +290,77 @@ L_aug = [L;
         1 0];
 
 T = 10;
-out = sim("Final_SIM.slx", T);
+out = sim("Final_no_comp_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
 figure
+tiledlayout(2,1)
+nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
-title('Final controlled system output (w/ motor model)')
-xlabel('Time (s)')
-ylabel('Angle (deg)')
+title('Final controlled system output - No dead zone compensator')
+xlabel('Time [s]')
+ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
 grid on
 
 % Plot control input u (1 signal)
-figure
+nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input (w/ motor model)')
-xlabel('Time (s)')
-ylabel('Voltage (V)')
+title('Controlled system input - No dead zone compensator')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'final_no_deadzone.pdf', 'ContentType', 'vector');
+
+%Final 2 - With dead zone compensator
+T = 10;
+out = sim("Final_SIM.slx", T);
+
+% Plot measured outputs y (2 signals)
+figure
+tiledlayout(2,1)
+nexttile
+plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
+title('Controlled system output - With dead zone compensator')
+xlabel('Time [s]')
+ylabel('Angle [deg]')
+legend({'\alpha','\beta'}, 'Location','best')
+grid on
+
+% Plot control input u (1 signal)
+nexttile
+plot(out.u.Time, out.u.Data)
+title('Controlled system input - With dead zone compensator')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
+legend({'u'}, 'Location','best')
+grid on
+exportgraphics(gcf, 'final_deadzone.pdf', 'ContentType', 'vector');
+
+
+% Final 3 - Sensors + compensator
 
 T = 10;
 out = sim("Final_sensors_SIM.slx", T);
 
 % Plot measured outputs y (2 signals)
 figure
+tiledlayout(2,1)
+nexttile
 plot(out.y.Time, out.y.Data(:,1), out.y.Time, out.y.Data(:,2))
-title('Controlled system output (w/ motor model + sensors model)')
-xlabel('Time (s)')
-ylabel('Angle (deg)')
+title('Final controlled system output - With sensors model')
+xlabel('Time [s]')
+ylabel('Angle [deg]')
 legend({'\alpha','\beta'}, 'Location','best')
 grid on
 
 % Plot control input u (1 signal)
-figure
+nexttile
 plot(out.u.Time, out.u.Data)
-title('Controlled system input (w/ motor model + sensors model)')
-xlabel('Time (s)')
-ylabel('Voltage (V)')
+title('Controlled system input - With sensors model')
+xlabel('Time [s]')
+ylabel('Voltage [V]')
 legend({'u'}, 'Location','best')
 grid on
+exportgraphics(gcf, 'final_sensors.pdf', 'ContentType', 'vector');
